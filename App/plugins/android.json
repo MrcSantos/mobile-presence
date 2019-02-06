@@ -9,6 +9,9 @@
   "installed_plugins": {
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-ble-central": {
+      "PACKAGE_NAME": "io.cordova.mobilepresence"
     }
   },
   "dependent_plugins": {}

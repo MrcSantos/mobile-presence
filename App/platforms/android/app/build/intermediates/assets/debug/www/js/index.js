@@ -5,7 +5,7 @@
  * regarding copyright ownership.  The ASF licenses this file
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
+ * with the License.  You may ovbtain a copy of the License at
  *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -18,7 +18,7 @@
  */
 var app = {
     // Application Constructor
-    initialize: function() {
+    initialize: function () {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
     },
 
@@ -26,12 +26,23 @@ var app = {
     //
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
-    onDeviceReady: function() {
+    onDeviceReady: function () {
         this.receivedEvent('deviceready');
+
+        ble.enable(
+            () => {
+                vbt.enabled = true
+                console.log("Bluetooth abilitato");
+            },
+            () => {
+                vbt.notenabled = true
+                console.log("Bluetooth *non* abilitato");
+            }
+        );
     },
 
     // Update DOM on a Received Event
-    receivedEvent: function(id) {
+    receivedEvent: function (id) {
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
@@ -41,4 +52,11 @@ var app = {
     }
 };
 
-$(() => app.initialize());
+var vbt = new Vue({
+    el: '#bt',
+    data: {
+        enabled: false,
+        notenabled: false
+    }
+})
+app.initialize();
