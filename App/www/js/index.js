@@ -5,7 +5,7 @@
  * regarding copyright ownership.  The ASF licenses this file
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
- * with the License.  You may ovbtain a copy of the License at
+ * with the License.  You may odbgain a copy of the License at
  *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -29,14 +29,21 @@ var app = {
     onDeviceReady: function () {
         this.receivedEvent('deviceready');
 
+        document.getElementById('bt').setAttribute('style', 'display:block;');
+
         ble.enable(
             () => {
-                vbt.enabled = true
-                console.log("Bluetooth abilitato");
+                dbg.message = 'bt ok'
+                
+                ble.scan([], 5, function(device) {
+                    dbg.message = JSON.stringify(device);
+                }, ()=>{
+                    dbg.message = 'fail scan';
+                });
             },
+            // On fail closes the app
             () => {
-                vbt.notenabled = true
-                console.log("Bluetooth *non* abilitato");
+                navigator.app.exitApp();
             }
         );
     },
@@ -52,11 +59,10 @@ var app = {
     }
 };
 
-var vbt = new Vue({
+var dbg = new Vue({
     el: '#bt',
     data: {
-        enabled: false,
-        notenabled: false
+        message: ''
     }
 })
 app.initialize();

@@ -52,3 +52,7 @@ body {
                                       /* offset horizontal: half of image width and text area width */
     }
 }
+
+#bt {
+    display: none;
+}

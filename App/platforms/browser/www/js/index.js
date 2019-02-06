@@ -29,14 +29,20 @@ var app = {
     onDeviceReady: function () {
         this.receivedEvent('deviceready');
 
+        document.getElementById('bt').setAttribute('style', 'display:block;');
+
         ble.enable(
             () => {
-                vbt.enabled = true
-                console.log("Bluetooth abilitato");
+                vbt.message = 'bt ok'
+                
+                ble.scan([], 5, function(device) {
+                    console.log(JSON.stringify(device));
+                }, ()=>{console.log('fail scan');
+                });
             },
+            // On fail closes the app
             () => {
-                vbt.notenabled = true
-                console.log("Bluetooth *non* abilitato");
+                navigator.app.exitApp();
             }
         );
     },
@@ -55,8 +61,7 @@ var app = {
 var vbt = new Vue({
     el: '#bt',
     data: {
-        enabled: false,
-        notenabled: false
+        message: ''
     }
 })
 app.initialize();

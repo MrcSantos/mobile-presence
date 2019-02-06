@@ -7,6 +7,9 @@
     <feature name="BLE">
         <param name="android-package" value="com.megster.cordova.ble.central.BLECentralPlugin" />
     </feature>
+    <feature name="ExitApp">
+        <param name="android-package" value="cordova.custom.plugins.exitapp.ExitApp" />
+    </feature>
     <name>Mobile presence</name>
     <description>
         Un'app che memorizza le connessioni bluetooth su un database remoto

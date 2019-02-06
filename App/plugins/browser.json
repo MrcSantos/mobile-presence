@@ -12,6 +12,9 @@
     },
     "cordova-plugin-ble-central": {
       "PACKAGE_NAME": "io.cordova.mobilepresence"
+    },
+    "cordova.custom.plugins.exitapp": {
+      "PACKAGE_NAME": "io.cordova.mobilepresence"
     }
   },
   "dependent_plugins": {

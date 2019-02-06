@@ -15,6 +15,14 @@ module.exports = [
         "merges": [
             "ble"
         ]
+    },
+    {
+        "file": "plugins/cordova.custom.plugins.exitapp/www/ExitApp.js",
+        "id": "cordova.custom.plugins.exitapp.exitApp",
+        "pluginId": "cordova.custom.plugins.exitapp",
+        "merges": [
+            "navigator.app"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -22,7 +30,8 @@ module.exports.metadata =
 {
     "cordova-plugin-whitelist": "1.3.3",
     "cordova-plugin-compat": "1.2.0",
-    "cordova-plugin-ble-central": "1.2.2"
+    "cordova-plugin-ble-central": "1.2.2",
+    "cordova.custom.plugins.exitapp": "1.0.0"
 }
 // BOTTOM OF METADATA
 });
