@@ -1,11 +1,17 @@
 {
   "background_color": "#FFF",
   "display": "standalone",
-  "name": "HelloCordova",
-  "short_name": "HelloCordova",
-  "version": "io.cordova.hellocordova",
-  "description": "A sample Apache Cordova application that responds to the deviceready event.",
-  "author": "Apache Cordova Team",
-  "icons": [],
+  "name": "Mobile presence",
+  "short_name": "Mobile presence",
+  "version": "io.cordova.mobilepresence",
+  "description": "Un'app che memorizza le connessioni bluetooth su un database remoto",
+  "author": "Mirco Santosuosso",
+  "icons": [
+    {
+      "src": "res/icon/icon.png",
+      "type": "image/png",
+      "sizes": "undefinedxundefined"
+    }
+  ],
   "start_url": "index.html"
 }
