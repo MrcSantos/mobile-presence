@@ -47,12 +47,14 @@
             <p class="event received">Device is Ready</p>
         </div>
     </div>
-    <div id="bt" v-for='connection in connections'>
-        {{ connection.name connection.id connection.rssi }}
-      </div>
-    
+    <div id="bt">
+        {{ message }}
+        <table id="connections"></table>
+    </div>
+
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript" src="js/tabelize.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
 </body>
 

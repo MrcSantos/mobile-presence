@@ -34,9 +34,12 @@ var app = {
         ble.enable(
             () => {
                 dbg.message = 'bt ok'
+                var devices = []
+                const table = document.getElementById('connections')
                 
                 ble.scan([], 5, function(device) {
-                    dbg.message = JSON.stringify(device);
+                    devices.push(device)
+                    table.innerHTML = tabelize(devices)
                 }, ()=>{
                     dbg.message = 'fail scan';
                 });
