@@ -17,55 +17,66 @@
  * under the License.
  */
 var app = {
-    // Application Constructor
-    initialize: function () {
-        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-    },
+	// Application Constructor
+	initialize: function () {
+		document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+	},
 
-    // deviceready Event Handler
-    //
-    // Bind any cordova events here. Common events are:
-    // 'pause', 'resume', etc.
-    onDeviceReady: function () {
-        this.receivedEvent('deviceready');
+	// deviceready Event Handler
+	//
+	// Bind any cordova events here. Common events are:
+	// 'pause', 'resume', etc.
+	onDeviceReady: function () {
+		this.receivedEvent('deviceready');
 
-        document.getElementById('bt').setAttribute('style', 'display:block;');
+		ble.enable(
+			() => {
+				dbg.connection = '<b style="color: #4B946A;">Bluetooth enabled</b>'
+				var devices = []
 
-        ble.enable(
-            () => {
-                dbg.message = 'bt ok'
-                var devices = []
-                const table = document.getElementById('connections')
-                
-                ble.scan([], 5, function(device) {
-                    devices.push(device)
-                    table.innerHTML = tabelize(devices)
-                }, ()=>{
-                    dbg.message = 'fail scan';
-                });
-            },
-            // On fail closes the app
-            () => {
-                navigator.app.exitApp();
-            }
-        );
-    },
+				ble.scan([], 20, (device) => {
+					if (!device.name) {
+						device.name = 'Unknown'
+					}
 
-    // Update DOM on a Received Event
-    receivedEvent: function (id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+					devices.push(device)
+					dbg.connection = tabelize(devices)
+				},
+					() => {
+						dbg.connection = '<b style="color: firebrick;">Scan failed, an error has occurred</b>';
+					});
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-    }
+			},
+			// On fail closes the app
+			() => {
+				dbg.connection = '<b style="color: firebrick;">Connection failed, the bluetooth is not enabled or an error has occurred</b>';
+
+				var fail = document.getElementById('deviceready').querySelector('.failed');
+				var good = document.getElementById('deviceready').querySelector('.received');
+
+				good.setAttribute('style', 'display:none;');
+				fail.setAttribute('style', 'display:block;');
+
+				navigator.app.exitApp();
+			}
+		);
+	},
+
+	// Update DOM on a Received Event
+	receivedEvent: function (id) {
+		var parentElement = document.getElementById(id);
+		var listeningElement = parentElement.querySelector('.listening');
+		var receivedElement = parentElement.querySelector('.received');
+
+		listeningElement.setAttribute('style', 'display:none;');
+		receivedElement.setAttribute('style', 'display:block;');
+	}
 };
 
 var dbg = new Vue({
-    el: '#bt',
-    data: {
-        message: ''
-    }
+	el: '#connection',
+	data: {
+		connection: 'Waiting for bluetooth...'
+	}
 })
 app.initialize();

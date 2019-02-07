@@ -17,6 +17,11 @@
     display:none;
 }
 
+.event.failed {
+    background-color: firebrick;
+    display:none;
+}
+
 @keyframes fade {
     from { opacity: 1.0; }
     50% { opacity: 0.4; }

@@ -5,7 +5,7 @@
  * @param {String|Array|Object} header Table header
  * @param {String} idHeader Header's id
  * @param {String} idBody Body's id
- * @param {Boolean} idRows Make rows' incremental id?
+ * @param {Boolean|Function} idRows Make rows' incremental id or generate it
  * @param {String} headerClasses Header's classes
  * @param {String} bodyClasses body's classes
  * @param {String} rowClasses row's classes
@@ -112,7 +112,7 @@ function makeHeaderRow(header) {
  * Makes the body's rows of the table given at least an array of values
  *
  * @param {Array} body The body of the table
- * @param {Boolean} id Make rows incremental id?
+ * @param {Boolean|Function} id Make rows incremental id?
  * @param {String} classes The classes of each row
  */
 function makeRows(body, id, classes) {
@@ -121,8 +121,11 @@ function makeRows(body, id, classes) {
 	for (let index = 0; index < body.length; index++) {
 		const row = body[index];
 
-		if (id) { rows += '<tr class="' + classes + '" id="' + index + '">' }
-		else { rows += '<tr class="' + classes + '">' }
+		if (id === true) { rows += '<tr class="' + classes + '" id="' + index + '">' }
+		else {
+			if (typeOf(id) === 'Function') { rows += '<tr class="' + classes + '" id="' + id() + '">' }
+			else { rows += '<tr class="' + classes + '">' }
+		}
 
 		rows += makeBodyRow(row);
 

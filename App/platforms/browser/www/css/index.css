@@ -17,3 +17,25 @@
  * under the License.
  */
 
+/* Portrait layout (default) */
+.app {
+    text-align:center;
+
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+
+    width: 80%;
+    margin-left: 10vw;
+}
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .app {
+        background: no-repeat;
+    }
+}
+
+#connection {
+	margin-left: 5vw;
+	width: 90%;
+}

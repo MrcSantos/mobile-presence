@@ -45,14 +45,15 @@
         <div id="deviceready" class="blink">
             <p class="event listening">Connecting to Device</p>
             <p class="event received">Device is Ready</p>
+            <p class="event failed">Failed to connect, closing</p>
         </div>
     </div>
-    <div id="bt">
-        {{ message }}
-      </div>
-    
+
+    <table id="connection" v-html='connection'></table>
+
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript" src="js/tabelize.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
 </body>
 
