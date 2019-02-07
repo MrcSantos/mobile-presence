@@ -23,6 +23,14 @@ module.exports = [
         "merges": [
             "navigator.app"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-uniquedeviceid/www/uniqueid.js",
+        "id": "cordova-plugin-uniquedeviceid.UniqueDeviceID",
+        "pluginId": "cordova-plugin-uniquedeviceid",
+        "merges": [
+            "window.plugins.uniqueDeviceID"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -31,7 +39,8 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.3.3",
     "cordova-plugin-compat": "1.2.0",
     "cordova-plugin-ble-central": "1.2.2",
-    "cordova.custom.plugins.exitapp": "1.0.0"
+    "cordova.custom.plugins.exitapp": "1.0.0",
+    "cordova-plugin-uniquedeviceid": "1.3.2"
 }
 // BOTTOM OF METADATA
 });

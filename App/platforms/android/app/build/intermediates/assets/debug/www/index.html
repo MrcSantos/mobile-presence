@@ -20,7 +20,7 @@
 <html>
 
 <head>
-    <!--
+	<!--
         Customize this policy to fit your own app's needs. For more guidance, see:
             https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
         Some notes:
@@ -29,32 +29,37 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
-    <link rel="shortcut icon" type="image/x-icon" href="img/logo.png" />
-    <meta name="format-detection" content="telephone=no">
-    <meta name="msapplication-tap-highlight" content="no">
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-    <link rel="stylesheet" type="text/css" href="css/default.css">
-    <link rel="stylesheet" type="text/css" href="css/connection.css">
-    <link rel="stylesheet" type="text/css" href="css/index.css">
-    <title>Mobile presence</title>
+	<meta http-equiv="Content-Security-Policy"
+		content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+	<link rel="shortcut icon" type="image/x-icon" href="img/logo.png" />
+	<meta name="format-detection" content="telephone=no">
+	<meta name="msapplication-tap-highlight" content="no">
+	<meta name="viewport"
+		content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+	<link rel="stylesheet" type="text/css" href="css/default.css">
+	<link rel="stylesheet" type="text/css" href="css/connection.css">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<title>Mobile presence</title>
 </head>
 
 <body>
-    <div class="app">
-        <div id="deviceready" class="blink">
-            <p class="event listening">Connecting to Device</p>
-            <p class="event received">Device is Ready</p>
-            <p class="event failed">Failed to connect, closing</p>
-        </div>
-    </div>
+	<div class="app">
+		<div id="deviceready" class="blink">
+			<p class="event listening">Connecting to Device</p>
+			<p class="event received">Device is Ready</p>
+			<p class="event failed">Failed to connect, closing</p>
+		</div>
+	</div>
 
-    <table id="connection" v-html='connection'></table>
+	<table id="connection" v-html='connection'></table>
 
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/vue.js"></script>
-    <script type="text/javascript" src="js/tabelize.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript" src="js/tabelize.js"></script>
+	<script type="text/javascript" src="js/init.js"></script>
+	<script type="text/javascript" src="js/btCheck.js"></script>
+	<script type="text/javascript" src="js/btScan.js"></script>
+	<script type="text/javascript" src="js/btHandler.js"></script>
 </body>
 
 </html>

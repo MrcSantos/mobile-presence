@@ -29,37 +29,7 @@ var app = {
 	onDeviceReady: function () {
 		this.receivedEvent('deviceready');
 
-		ble.enable(
-			() => {
-				dbg.connection = 'Bluetooth enabled'
-				var devices = []
-
-				ble.scan([], 5, (device) => {
-					if (!device.name) {
-						device.name = 'Unknown'
-					}
-
-					devices.push(device)
-					dbg.connection = tabelize(devices)
-				},
-					() => {
-						dbg.connection = '<b style="color: firebrick;">Scan failed, an error has occurred</b>';
-					});
-
-			},
-			// On fail closes the app
-			() => {
-				dbg.connection = '<b style="color: firebrick;">Connection failed, the bluetooth is not enabled or an error has occurred</b>';
-
-				var fail = document.getElementById('deviceready').querySelector('.failed');
-				var good = document.getElementById('deviceready').querySelector('.received');
-
-				good.setAttribute('style', 'display:none;');
-				fail.setAttribute('style', 'display:block;');
-
-				navigator.app.exitApp();
-			}
-		);
+		app();
 	},
 
 	// Update DOM on a Received Event
@@ -79,4 +49,5 @@ var dbg = new Vue({
 		connection: 'Waiting for bluetooth...'
 	}
 })
+
 app.initialize();
