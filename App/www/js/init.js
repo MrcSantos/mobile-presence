@@ -50,4 +50,6 @@ var dbg = new Vue({
 	}
 })
 
+var lastDevice = {};
+
 app.initialize();
