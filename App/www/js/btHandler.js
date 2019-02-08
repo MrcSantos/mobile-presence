@@ -5,13 +5,14 @@
 function devsHandler(devices) {
 	nearDev = getNearestDevice(devices);
 
-	if (!isEmpty(lastDevice)) {
+	if (!isEmpty(lastDevice) && !JSON.stringify(lastDevice) === JSON.stringify(nearDev)) {
+		dbCloseOldConnection(lastDevice);
+	}
+	else {
 		dbCloseOldConnection(lastDevice);
 		dbOpenNewConnection(nearDev);
 	}
-	else {
-		dbOpenNewConnection(nearDev);
-	}
+
 }
 
 function getNearestDevice(devices) {

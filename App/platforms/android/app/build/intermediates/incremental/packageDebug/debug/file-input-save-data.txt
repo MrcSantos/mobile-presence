@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Thu Feb 07 17:16:38 CET 2019
+#Thu Feb 07 18:01:50 CET 2019
 17.baseType=DIRECTORY
 4.path=www/cordova.js
 22.set=ASSET
