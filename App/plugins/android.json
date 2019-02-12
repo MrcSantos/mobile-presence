@@ -8,16 +8,10 @@
   },
   "installed_plugins": {
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "io.cordova.hellocordova"
+      "PACKAGE_NAME": "com.cordova.mobilepresence"
     },
     "cordova-plugin-ble-central": {
-      "PACKAGE_NAME": "io.cordova.mobilepresence"
-    },
-    "cordova.custom.plugins.exitapp": {
-      "PACKAGE_NAME": "io.cordova.mobilepresence"
-    },
-    "cordova-plugin-uniquedeviceid": {
-      "PACKAGE_NAME": "io.cordova.mobilepresence"
+      "PACKAGE_NAME": "com.cordova.mobilepresence"
     }
   },
   "dependent_plugins": {}
