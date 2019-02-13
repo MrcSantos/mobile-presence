@@ -30,7 +30,7 @@
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
 	<meta http-equiv="Content-Security-Policy"
-		content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+		content="default-src 'self' 'unsafe-inline' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; connect-src *; media-src *; img-src 'self' data: content:;">
 	<link rel="shortcut icon" type="image/x-icon" href="../res/icon/icon.png" />
 	<meta name="format-detection" content="telephone=no">
 	<meta name="msapplication-tap-highlight" content="no">
@@ -39,25 +39,45 @@
 	<link rel="stylesheet" type="text/css" href="css/default.css">
 	<link rel="stylesheet" type="text/css" href="css/connection.css">
 	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<link rel="stylesheet" type="text/css" href="css/status.css">
 	<title>Mobile presence</title>
 </head>
 
 <body>
-	<!-- Tags rendered with Vue.js -->
-	<div id="status"></div>
-	<div id="connections"></div>
-	<div id="dbg"></div>
+	<div class="app">
+		<div id="deviceready" class="blink">
+			<p class="event listening">Connecting to Device</p>
+			<p class="event received">Device is Ready</p>
+			<p class="event failed">Failed to connect, closing</p>
+		</div>
+	</div>
 
+	<table id="dbg" v-html='connection'></table>
 
 	<script type="text/javascript" src="cordova.js"></script>
-	<script type="text/javascript" src="js/vue.js"></script>
-	<script type="text/javascript" src="js/components/status.js"></script>
-	<script type="text/javascript" src="js/components/connections.js"></script>
-	<script type="text/javascript" src="js/init.js"></script>
-	<script type="text/javascript" src="js/btCheck.js"></script>
+	<script type="text/javascript" src="js/lib/vue.js"></script>
+
+	<script src="js/lib/firebase.js"></script>
+	<script src="js/lib/firebase-app.js"></script>
+	<script>
+		// Initialize Firebase
+		var config = {
+			apiKey: "AIzaSyAKnKHDMZOZ1RqYwqhxD87bCBLscXOX-4s",
+			authDomain: "mobile-presence-stage-2019.firebaseapp.com",
+			databaseURL: "https://mobile-presence-stage-2019.firebaseio.com",
+			projectId: "mobile-presence-stage-2019",
+			storageBucket: "mobile-presence-stage-2019.appspot.com",
+			messagingSenderId: "800467615714"
+		};
+		firebase.initializeApp(config);
+	</script>
+	<script src="js/lib/firebase-firestore.js"></script>
+
+	<script type="text/javascript" src="js/dbAPIs.js"></script>
 	<script type="text/javascript" src="js/btScan.js"></script>
 	<script type="text/javascript" src="js/btHandler.js"></script>
-	<script type="text/javascript" src="js/dbAPIs.js"></script>
+	<script type="text/javascript" src="js/init.js"></script>
+	<script type="text/javascript" src="js/btCheck.js"></script>
 </body>
 
 </html>

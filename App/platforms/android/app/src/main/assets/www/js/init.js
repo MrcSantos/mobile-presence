@@ -27,6 +27,7 @@ var app = {
 	// Bind any cordova events here. Common events are:
 	// 'pause', 'resume', etc.
 	onDeviceReady: function () {
+		dbg.connection += '<br>device ready<br>'
 		init();
 		app();
 	}
@@ -40,22 +41,6 @@ function init() {
 }
 
 //--------------------------------------------------// - Inizializzazione componenti Vue e variabili globali
-
-var status = new Vue({
-	el: '#status',
-	data: {
-		bt: 'init',
-		scan: 'init',
-		db: 'init'
-	}
-})
-
-var connections = new Vue({
-	el: '#connection',
-	data: {
-		devs: {}
-	}
-})
 
 var dbg = new Vue({
 	el: '#dbg',

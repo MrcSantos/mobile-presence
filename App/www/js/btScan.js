@@ -16,8 +16,6 @@ function btEnabled() {
 	});
 
 	setTimeout(() => {
-		dbg.connection = 'Done'
-
 		devsHandler(devices);
 	}, (seconds + 1) * 1000);
 }

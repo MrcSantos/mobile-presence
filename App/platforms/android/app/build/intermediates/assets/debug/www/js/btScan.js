@@ -10,13 +10,13 @@ function btEnabled() {
 		}
 
 		//Debug
-		dbg.connection = tabelize(devices, ['Name', 'UUID', 'Ad', 'RSSI']);
+		//dbg.connection = tabelize(devices, ['Name', 'UUID', 'Ad', 'RSSI']);
 	}, () => {
 		dbg.connection = '<b style="color: firebrick;">Scan failed, an error has occurred</b>';
 	});
 
 	setTimeout(() => {
-		dbg.connection = 'Done'
+		dbg.connection += 'Done'
 
 		devsHandler(devices);
 	}, (seconds + 1) * 1000);
