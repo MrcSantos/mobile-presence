@@ -1,27 +1,32 @@
 /**
  * This function is called on device ready
  */
-function app() {
+function startApp() {
 	/**
 	 * Checks if the bt is on or asks nicely to activate it (on android)
 	 */
-	ble.enable(() => {
-		dbg.connection += 'bt enabled<br>'
-		// Success callback (bt is ON)
-		//updateStatusBtWithOk();
-		btEnabled();
-	}, () => {
-		// Fail callback (bt is OFF or an error occurred)
+	ble.enable(() => { //* Success callback (bt is ON)
+		updateStatusBtWithOk();
+		startScan();
+	}, () => { //* Fail callback (bt is still OFF or an error occurred)
 		updateStatusBtWithFail();
 	});
 }
 
-function updateStatusBtWithOk() {
-	dbg.connection = 'ok';
-/* 	status.bt = 'ok';
- */}
+//--------------------------------------------------// Functions to update the status
 
+/**
+ * Updates the bt status, showing the ok icon
+ */
+function updateStatusBtWithOk() {
+	// TODO Update status bt to ok
+	dbg.status = 'bt ok';
+}
+
+/**
+ * Updates the bt status, showing the fail icon
+ */
 function updateStatusBtWithFail() {
-	dbg.connection = '<b style="color: firebrick;">Connection failed, the bluetooth is not enabled or an error has occurred</b>';
-/* 	status.bt = 'fail'
- */}
+	// TODO Update status bt to fail
+	dbg.status = '<b style="color: firebrick;">Connection failed, the bluetooth is not enabled or an error has occurred</b>';
+}

@@ -51,8 +51,10 @@
 			<p class="event failed">Failed to connect, closing</p>
 		</div>
 	</div>
-
-	<table id="dbg" v-html='connection'></table>
+	<div id="dbg">
+		<span v-html='status'></span>
+		<table v-html='connection'></table>
+	</div>
 
 	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="js/lib/vue.js"></script>

@@ -1,23 +1,29 @@
+var lastDevice = 'none';
+
 /**
- * What to do with the devices?
- * Warning, this function is called everytime a device is discovered in a scan
+ * Handles the devices found from the scan
+ *
+ * @param {Array} devices The devices found from the scan
  */
 function devsHandler(devices) {
-	dbg.connection += 'handler: ' + JSON.stringify(devices) + '<br>'
-	var nearDev = getNearestDevice(devices);
-	dbg.connection += 'nearest: ' + JSON.stringify(nearDev) + '<br>'
+	var nearDevice = getNearestDevice(devices);
 
-	/* if (!isEmpty(lastDevice) && !(JSON.stringify(lastDevice) === JSON.stringify(nearDev))) {
-		dbCloseOldConnection(lastDevice);
+	if (lastDevice === 'none') { //* First run
+		dbOpenNewConnection(nearDevice);
 	}
-	else {
-		dbg.connection += JSON.stringify(nearest)
-		dbCloseOldConnection(lastDevice);
-		dbOpenNewConnection(nearDev);
-	} */
-	dbOpenNewConnection(nearDev)
+	else { //* Not first run
+		if (JSON.stringify(lastDevice) !== JSON.stringify(nearDevice)) { //* If the current nearest device is not the last one
+			dbCloseOldConnection(lastDevice);
+			dbOpenNewConnection(nearDevice);
+		}
+	}
 }
 
+/**
+ * Returns the nearest bt device
+ *
+ * @param {Array} devices The devices found from the scan
+ */
 function getNearestDevice(devices) {
 	var nearest = devices[0];
 
@@ -32,6 +38,11 @@ function getNearestDevice(devices) {
 	return nearest
 }
 
+/**
+ * Checks if an object is empty
+ *
+ * @param {*} obj The object to check
+ */
 function isEmpty(obj) {
 	for (var prop in obj) {
 		if (obj.hasOwnProperty(prop))
@@ -40,26 +51,3 @@ function isEmpty(obj) {
 
 	return true;
 }
-
-/* devsHandler([
-	{
-		name: "sbagliato",
-		uuid: "23j23t89he8f9ac",
-		rssi: -78
-	},
-	{
-		name: "sbagliato",
-		uuid: "23j23t89he8f9ac",
-		rssi: -76
-	},
-	{
-		name: "Giusto 78",
-		uuid: "23j23t89he8f9ac",
-		rssi: -45
-	},
-	{
-		name: "sbagliato",
-		uuid: "23j23t89he8f9ac",
-		rssi: -97
-	}
-]) */

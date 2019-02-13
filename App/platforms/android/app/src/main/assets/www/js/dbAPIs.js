@@ -1,77 +1,90 @@
-const db = firebase.firestore()
+const db = firebase.firestore() // Database engine initialisation
+var userUniqueId = 'user12345'; //FIXME  Use another user id
 
-var userUniqueId = 'user12345'; // Use another user id
-
+/**
+ * Sets the status connection to off and pushes the device proprieties to the db
+ *
+ * @param {Object} dev The device proprieties to push to the db
+ */
 function dbCloseOldConnection(dev) {
-	dbg.connection += 'close with: ' + JSON.stringify(dev)
-	dbWrite(dev, 'off', userUniqueId);
-
-	restart(dev);
+	dbWrite(dev, 'off');
 }
 
+/**
+ * Sets the status connection to off and pushes the device proprieties to the db
+ *
+ * @param {Object} dev The device proprieties to push to the db
+ */
 function dbOpenNewConnection(dev) {
-	dbg.connection += 'open with: ' + JSON.stringify(dev) + '<br>'
-	dbWrite(dev, 'on', userUniqueId);
-
-	//restart(dev);
+	dbWrite(dev, 'on');
 }
 
-/*
-var docRef = db.collection("presences").doc("presences");
+//--------------------------------------------------// Functions
 
-var getOptions = {
-	source: 'server'
-};
-
-docRef.get(getOptions).then(function (doc) {
-	console.log("document data:", doc.data());
-}).catch(function (error) {
-	console.log("Error getting cached document:", error);
-});
-
-/*var docData = {
-	name: "Prova numero 2",
-	uuid: "23j23t89he8f9ac",
-	user: "arf4ty24swr34sa",
-	rssi: -65
-};
-docRef.set(docData).then(function () {
-	console.log("Document successfully written!");
-});
-*/
-
+/**
+ * Restarts the app
+ *
+ * @param {Object} dev The device currently saved in the db
+ */
 function restart(dev) {
 	setTimeout(() => {
 		devices = [];
 		lastDevice = dev;
-		btEnabled();
+		startApp();
 	}, 5000);
 }
 
-function dbWrite(dev, status, user) {
-	var data = {
+/**
+ * Writes the data on the db
+ *
+ * @param {Object} dev The device's proprieties to push
+ * @param {String} status The connection status
+ */
+function dbWrite(dev, status) {
+	var docRef = db.collection("presences").doc("presences");
+
+	const datetime = new Date().getMilliseconds();
+	var data = { //* The data object to push
 		name: dev.name,
 		uuid: dev.id,
 		rssi: dev.rssi,
-		user: user,
-		status: status
+		user: userUniqueId,
+		status: status,
+		time: datetime
 	};
 
-	dbg.connection += 'I\'m going to write: ' + JSON.stringify(data)
-
-	var docRef = db.collection("presences").doc("presences");
-
-	docRef.set(data).then(() => {
-		dbg.connection += "Document successfully written!"
-	}).catch(function (error) {
-		dbg.connection += "Error writing document: ", error;
-	});
+	docRef.set(data)
+		.then(() => {
+			dbStop();
+			restart(dev)
+		})
+		.catch((error) => {
+			dbFail(error);
+		});
 }
 
-/* var docData = {
-	name: "Prova provosa",
-	uuid: "23j23t89he8f9ac",
-	rssi: -65
-};
+//--------------------------------------------------// Functions to update the status
 
-dbOpenNewConnection(docData); */
+/**
+ * Updates the db status, showing the running icon
+ */
+function dbStart() {
+	// TODO Update status db to running
+	dbg.status = 'Database running';
+}
+
+/**
+ * Updates the db status, showing the ok icon
+ */
+function dbStop() {
+	// TODO Update status db to ok
+	dbg.status = 'Database stop';
+}
+
+/**
+ * Updates the db status, showing the fail icon
+ */
+function dbFail() {
+	// TODO Update status db to fail
+	dbg.status = 'Database fail';
+}
