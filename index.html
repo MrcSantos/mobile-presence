@@ -16,6 +16,7 @@
 <body>
 	<div id="gui">
 		<status :bt='bt' :scan='scan' :db='db'></status>
+		<hr>
 		<devices v-for='device in devices' :device='device' :key="device.id"></devices>
 	</div>
 

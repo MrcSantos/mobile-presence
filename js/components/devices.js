@@ -4,12 +4,17 @@ Vue.component('devices', {
 			type: Object,
 
 			default: function () {
-				return {}
+				return []
 			}
 		}
 	},
 	template:
-		'<div class="device">\
-			{{ device.id }} - {{ device.name }}\
-		</div>'
+		'<table class="device">\
+			<tr class="name">\
+				<td>{{ device.name }} ({{ device.rssi }})</td>\
+			</tr>\
+			<tr class="uuid">\
+				<td>{{ device.id }}</td>\
+			</tr>\
+		</table>'
 });
