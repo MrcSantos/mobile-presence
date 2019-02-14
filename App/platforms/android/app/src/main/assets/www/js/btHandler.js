@@ -6,17 +6,21 @@ var lastDevice = 'none';
  * @param {Array} devices The devices found from the scan
  */
 function devsHandler(devices) {
-	var nearDevice = getNearestDevice(devices);
+	if (isDef(devices)) { //* If there are devices found
+		var nearDevice = getNearestDevice(devices);
 
-	if (lastDevice === 'none') { //* First run
-		dbOpenNewConnection(nearDevice);
-	}
-	else { //* Not first run
-		if (JSON.stringify(lastDevice) !== JSON.stringify(nearDevice)) { //* If the current nearest device is not the last one
-			dbCloseOldConnection(lastDevice);
-			dbOpenNewConnection(nearDevice);
+		//* First run
+		if (lastDevice === 'none') { dbOpenNewConnection(nearDevice) }
+		else { //* Not first run
+			if (lastDevice.id !== nearDevice.id) { //* If the current nearest device is not the last one
+				dbCloseOldConnection(lastDevice);
+				dbOpenNewConnection(nearDevice);
+			}
 		}
 	}
+
+	//* If there are NO devices found or the nearest device equals the last one
+	restart();
 }
 
 /**

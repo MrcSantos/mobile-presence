@@ -20,7 +20,7 @@ function startScan() {
 	setTimeout(() => { //* What to do with the scanned devices
 		scanEnded();
 		devsHandler(scannedDevices);
-	}, (scanSeconds + 1) * 1000);
+	}, (scanSeconds + 5) * 1000);
 }
 
 //--------------------------------------------------// Functions
@@ -80,5 +80,6 @@ function scanFailed() {
  */
 function listDevices() {
 	// TODO Update the connections
-	dbg.connection = tabelize(scannedDevices, ['Name', 'UUID', 'Ad', 'RSSI']);
+	//dbg.connection = tabelize(scannedDevices, ['Name', 'UUID', 'Ad', 'RSSI']);
+	dbg.connection = JSON.stringify(scannedDevices);
 }
