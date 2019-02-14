@@ -11,10 +11,11 @@ Vue.component('devices', {
 	template:
 		'<table class="device">\
 			<tr class="name">\
-				<td>{{ device.name }} ({{ device.rssi }})</td>\
+				<td>Name: {{ device.name }} ({{ device.rssi }})</td>\
 			</tr>\
+			<div class="divider"></div>\
 			<tr class="uuid">\
-				<td>{{ device.id }}</td>\
+				<td>Id: {{ device.id }}</td>\
 			</tr>\
 		</table>'
 });

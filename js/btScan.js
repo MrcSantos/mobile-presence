@@ -34,6 +34,7 @@ function startScan() {
 function filterDevice(device) {
 	if (isDef(device.name)) {
 		scannedDevices.push(device);
+		gui.devices.push(device);
 	}
 }
 
@@ -67,13 +68,4 @@ function scanEnded() {
  */
 function scanFailed() {
 	gui.scan = 'fail';
-}
-
-//--------------------------------------------------// Functions to update the connection devices
-
-/**
- * Lists all the devices found from the scan
- */
-function listDevices() {
-	gui.devices = scannedDevices;
 }

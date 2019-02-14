@@ -63,7 +63,7 @@ function dbWrite(dev, status) {
  */
 function restart(dev) {
 	//* Resets the variables
-	dbg.connection = '';
+	gui.devices = [];
 	scannedDevices = [];
 
 	if (isDef(dev)) { lastDevice = copyObj(dev) } //* If a device is given it saves it as the last device
