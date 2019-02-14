@@ -11,7 +11,7 @@ var app = {
 	 */
 	onDeviceReady: function () {
 		init();
-		startApp();
+		//startApp();
 	}
 };
 
@@ -20,20 +20,9 @@ var app = {
 /**
  * Things to do before the app runs
  */
-function init() {
-	// TODO Initialize gui and Vue
-	dbg.status = 'Waiting for bluetooth...';
-}
+function init() { }
 
 //--------------------------------------------------// Initialization of the Vue instances + Cordova app
-
-var dbg = new Vue({
-	el: '#dbg',
-	data: {
-		status: 'App loading...',
-		connection: 'App loading...'
-	}
-})
 
 const gui = new Vue({
 	el: '#gui',
@@ -45,6 +34,5 @@ const gui = new Vue({
 		devices: []
 	}
 });
-
 
 app.initialize();

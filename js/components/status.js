@@ -2,30 +2,22 @@ Vue.component('status', {
 	props: {
 		bt: {
 			type: String,
-			default: 'init',
-
-			validator: (value) => { //* The value must match one of these
-				return ['init', 'ok', 'fail'].indexOf(value) !== -1
-			}
+			default: 'init'
 		},
 		scan: {
 			type: String,
-			default: 'init',
-
-			validator: (value) => { //* The value must match one of these
-				return ['init', 'ok', 'running', 'fail'].indexOf(value) !== -1
-			}
+			default: 'init'
 		},
 		db: {
 			type: String,
-			default: 'init',
-
-			validator: (value) => { //* The value must match one of these
-				return ['init', 'ok', 'running', 'fail'].indexOf(value) !== -1
-			}
+			default: 'init'
 		}
 	},
 	template:
-		'<div class="status">\
-		</div>'
+		'<p class="status">\
+			<span style="font-size:20vw;">Status: </span>\
+			<img :src="\'img/status/bt/\' + bt + \'.png\'" width="20vw" :alt="\'\' + bt" />\
+			<img :src="\'img/status/scan/\' + scan + \'.png\'" width="20vw" :alt="\'\' + scan" />\
+			<img :src="\'img/status/db/\' + db + \'.png\'" width="20vw" :alt="\'\' + db" />\
+		</p>'
 });
