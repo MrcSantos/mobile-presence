@@ -7,4 +7,4 @@ const gui = new Vue({
 		db: 'init',
 		devices: []
 	}
-});
+}); 
