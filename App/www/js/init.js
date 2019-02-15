@@ -20,19 +20,19 @@ var app = {
 /**
  * Things to do before the app runs
  */
-function init() {
-	// TODO Initialize gui and Vue
-	dbg.status = 'Waiting for bluetooth...';
-}
+function init() { }
 
 //--------------------------------------------------// Initialization of the Vue instances + Cordova app
 
-var dbg = new Vue({
-	el: '#dbg',
+const gui = new Vue({
+	el: '#gui',
+
 	data: {
-		status: 'App loading...',
-		connection: 'App loading...'
+		bt: 'init',
+		scan: 'init',
+		db: 'init',
+		devices: []
 	}
-})
+});
 
 app.initialize();

@@ -1,4 +1,4 @@
-const db = firebase.firestore() // Database engine initialisation
+const db = firebase.firestore(); // Database engine initialisation
 var userUniqueId = 'user12345'; //FIXME  Use another user id
 const restartSeconds = 20; // Restart wait seconds
 
@@ -46,15 +46,15 @@ function dbWrite(dev, status) {
 	doc.set(data) //* Data write API
 		.then(() => { //* Success writing
 			dbStop();
-			restart(dev)
+			restart(dev);
 		})
 		.catch((error) => { //* Fail writing
 			dbFail(error);
-			restart()
+			restart();
 		});
 }
 
-//--------------------------------------------------// Functions after writing on db
+//--------------------------------------------------// Misc functions
 
 /**
  * Restarts the app
@@ -63,7 +63,7 @@ function dbWrite(dev, status) {
  */
 function restart(dev) {
 	//* Resets the variables
-	dbg.connection = '';
+	gui.devices = [];
 	scannedDevices = [];
 
 	if (isDef(dev)) { lastDevice = copyObj(dev) } //* If a device is given it saves it as the last device
@@ -88,22 +88,20 @@ function copyObj(obj) {
  * Updates the db status, showing the running icon
  */
 function dbStart() {
-	// TODO Update status db to running
-	dbg.status = 'Database running';
+	gui.db = 'running';
 }
 
 /**
  * Updates the db status, showing the ok icon
  */
 function dbStop() {
-	// TODO Update status db to ok
-	dbg.status = 'Database stop';
+	gui.db = 'ok';
 }
 
 /**
  * Updates the db status, showing the fail icon
  */
 function dbFail(e) {
-	// TODO Update status db to fail
-	dbg.status = '<b style="color: firebrick;">Database failed, no network detected or an error has occurred</b><br>' + e;
+	console.log(e);
+	gui.db = 'fail';
 }
