@@ -1,0 +1,14 @@
+.header {
+	width: fit-content;
+	margin: auto;
+}
+
+.logo {
+	text-align: center;
+}
+
+.title {
+	text-align: center;
+	font-size: 10vw;
+	white-space: nowrap;
+}

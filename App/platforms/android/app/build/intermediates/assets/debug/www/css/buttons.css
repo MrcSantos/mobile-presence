@@ -1,0 +1,53 @@
+.button-group {
+	width: fit-content;
+	text-align: center;
+}
+
+button {
+	position: relative;
+
+	width: 100%;
+
+	cursor: pointer;
+
+	text-align: center;
+	text-decoration: none;
+
+	font-size: 4vh;
+
+	padding: 1vh;
+
+	clear: both;
+
+	outline: none;
+	border: 1px solid rgba(121,121,121,1);
+	border-bottom: 2px solid rgb(100, 100, 100);
+	border-radius: 8px;
+	box-shadow: 0 4px 12px 0 rgba(0,0,0,0.2), 0 5px 15px 0 rgba(0,0,0,0.19);
+}
+button:active {
+	top: 3px;
+	border: 1px solid transparent;
+	border-bottom: 2px solid rgb(58, 57, 57);
+	box-shadow: 0 0;
+}
+
+.positive {
+	color: whitesmoke;
+	background: rgba(86, 111, 184, 1);
+	border: 1px solid rgba(86, 111, 184, 1);
+	border-bottom: 2px solid rgb(100, 100, 100);
+}
+.positive:active {
+	background-color: rgb(57, 77, 136);
+}
+
+.negative {
+	color: whitesmoke;
+	background-color: rgb(200, 80, 80);
+	border: 1px solid rgb(200, 80, 80);
+	border-bottom: 2px solid rgb(100, 100, 100);
+}
+.negative:active {
+	background-color: rgb(165, 60, 60);
+}

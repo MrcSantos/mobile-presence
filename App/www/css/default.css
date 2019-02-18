@@ -1,27 +1,40 @@
 * {
-    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+  -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
 
 body {
-    background: no-repeat;
-    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
-    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:lightcyan;
-    background-image:linear-gradient(top, lightblue 0%, lightcyan 51%);
-    background-image:-webkit-linear-gradient(top, lightblue 0%, lightcyan 51%);
-    background-image:-ms-linear-gradient(top, lightblue 0%, lightcyan 51%);
-    background-image:-webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0, lightblue),
-        color-stop(0.51, lightcyan)
-    );
-    background-attachment:fixed;
-    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-    font-size:12px;
-    height:100%;
-    margin:0px;
-    padding:0px;
-    width:100%;
+	-webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+	-webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+
+	background: no-repeat;
+	background-attachment:fixed;
+
+	background-color: white;
+
+  font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+	font-size:12px;
+}
+
+.wrapper {
+	width: 90%;
+	height: fit-content;
+
+	padding: 20px;
+
+	overflow: auto;
+
+	display: block;
+
+	position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.space-big {
+	margin: 20vh;
+}
+
+.space-little {
+	margin: 5vh;
 }

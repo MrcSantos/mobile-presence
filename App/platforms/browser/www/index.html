@@ -1,61 +1,52 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
 
 <head>
-	<!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
 	<meta http-equiv="Content-Security-Policy"
 		content="default-src 'self' 'unsafe-inline' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; connect-src *; media-src *; img-src 'self' data: content:;">
-	<link rel="shortcut icon" type="image/x-icon" href="../res/icon/icon.png" />
 	<meta name="format-detection" content="telephone=no">
 	<meta name="msapplication-tap-highlight" content="no">
 	<meta name="viewport"
 		content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-	<link rel="stylesheet" type="text/css" href="css/default.css">
-	<link rel="stylesheet" type="text/css" href="css/connection.css">
-	<link rel="stylesheet" type="text/css" href="css/index.css">
-	<link rel="stylesheet" type="text/css" href="css/status.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="css/lib/w3.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="css/default.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="css/header.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="css/buttons.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="css/debug/status.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="css/debug/devices.css">
 	<title>Mobile presence</title>
 </head>
 
 <body>
-	<div class="app">
-		<div id="deviceready" class="blink">
-			<p class="event listening">Connecting to Device</p>
-			<p class="event received">Device is Ready</p>
-			<p class="event failed">Failed to connect, closing</p>
+	<div style="display: none;">
+		<div id="gui">
+			<status :bt='bt' :scan='scan' :db='db'></status>
+			<hr>
+			<devices v-for='device in devices' :device='device' :key="device.id"></devices>
 		</div>
 	</div>
 
-	<table id="dbg" v-html='connection'></table>
+	<div class="wrapper">
+		<div class="w3-content" style="max-width: 90%;">
+			<div class="header">
+				<div class="logo"><img src="img/logo.png" alt="logo" height="100vh"></div>
+				<span class="title">Mobile presence</span>
+			</div>
+
+			<div class="space-big"></div>
+
+			<div class="w3-content button-group">
+				<button class="positive">Positivo</button>
+				<div class="space-little"></div>
+				<button class="negative">Negativo</button>
+			</div>
+		</div>
+	</div>
 
 	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="js/lib/vue.js"></script>
+	<script type="text/javascript" src="js/components/status.js"></script>
+	<script type="text/javascript" src="js/components/devices.js"></script>
 
 	<script src="js/lib/firebase.js"></script>
 	<script src="js/lib/firebase-app.js"></script>

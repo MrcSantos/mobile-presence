@@ -1,27 +1,71 @@
-const seconds = 5;
-var devices = [];
+const scanSeconds = 5; // Seconds for the scan
+var scannedDevices = []; // The devices found from the scan
 
-function btEnabled() {
-	dbg.connection = '<b style="color: #4B946A;">Bluetooth enabled</b>'
+/**
+ * Initializes the bt scan
+ */
+function startScan() {
+	scanStarted();
 
-	ble.scan([], seconds, (device) => {
-		if (isDef(device.name)) {
-			devices.push(device)
-		}
-
-		//Debug
-		//dbg.connection = tabelize(devices, ['Name', 'UUID', 'Ad', 'RSSI']);
-	}, () => {
-		dbg.connection = '<b style="color: firebrick;">Scan failed, an error has occurred</b>';
+	/**
+	 * Starts the bt scan for all devices, for the specified seconds
+	 */
+	ble.scan([], scanSeconds, (device) => { //* Scan went well
+		filterDevice(device);
+		listDevices();
+	}, () => { //* Scan failed
+		scanFailed();
+		startApp(); //* Resets the app (checking again for the bt)
 	});
 
-	setTimeout(() => {
-		dbg.connection += 'Done'
-
-		devsHandler(devices);
-	}, (seconds + 1) * 1000);
+	setTimeout(() => { //* What to do with the scanned devices
+		scanEnded();
+		devsHandler(scannedDevices);
+	}, (scanSeconds + 5) * 1000);
 }
 
+//--------------------------------------------------// Functions
+
+/**
+ * Filters the unnamed bt devices
+ *
+ * @param {Object} device The device to filter
+ */
+function filterDevice(device) {
+	if (isDef(device.name)) {
+		scannedDevices.push(device);
+		gui.devices.push(device);
+	}
+}
+
+/**
+ * Checks if the variable is defined
+ *
+ * @param {*} any The variable to check
+ */
 function isDef(any) {
 	return any !== undefined && any !== null
+}
+
+//--------------------------------------------------// Functions to update the status
+
+/**
+ * Updates the scan status, showing the running icon
+ */
+function scanStarted() {
+	gui.scan = 'running';
+}
+
+/**
+ * Updates the scan status, showing the ok icon
+ */
+function scanEnded() {
+	gui.scan = 'ok';
+}
+
+/**
+ * Updates the scan status, showing the fail icon and resets the app in order to check the bt
+ */
+function scanFailed() {
+	gui.scan = 'fail';
 }

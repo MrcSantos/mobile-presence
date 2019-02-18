@@ -10,7 +10,7 @@ function startApp() {
 		startScan();
 	}, () => { //* Fail callback (bt is still OFF or an error occurred)
 		btFail();
-		startApp();
+		restart();
 	});
 }
 
