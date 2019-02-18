@@ -31,8 +31,22 @@ const gui = new Vue({
 		bt: 'init',
 		scan: 'init',
 		db: 'init',
+		debug: '',
 		devices: []
 	}
 });
 
 app.initialize();
+
+function toggleDebug() {
+	var dbg = document.getElementById("dbg");
+	var std = document.getElementById("std");
+
+	if (dbg.style.display === "none") {
+		std.style.display = "none";
+		dbg.style.display = "block";
+	} else {
+		dbg.style.display = "none";
+		std.style.display = "block";
+	}
+}
