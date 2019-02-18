@@ -10,17 +10,27 @@ var app = {
 	 ** The app starts here, after the deviceReady event
 	 */
 	onDeviceReady: function () {
-		init();
-		startApp();
+		checkCredentials(() => { startApp() });
 	}
 };
 
 //--------------------------------------------------// Things to do before the app runs
 
 /**
- * Things to do before the app runs
+ * Checks the user credentials
  */
-function init() { }
+function checkCredentials(callback) {
+	window.plugins.uniqueDeviceID.get((id) => {
+		userUniqueId = id;
+		gui.id = 'Your personal id: ' + id;
+	});
+
+	db.collection("users").get().then(function (querySnapshot) {
+		querySnapshot.forEach(function (doc) {
+			if (doc.id === userUniqueId) { callback() }
+		});
+	});
+}
 
 //--------------------------------------------------// Initialization of the Vue instances + Cordova app
 
@@ -31,6 +41,7 @@ const gui = new Vue({
 		bt: 'init',
 		scan: 'init',
 		db: 'init',
+		id: '',
 		debug: '',
 		devices: []
 	}
@@ -50,3 +61,5 @@ function toggleDebug() {
 		std.style.display = "block";
 	}
 }
+
+var userUniqueId = '';

@@ -1,5 +1,4 @@
 const db = firebase.firestore(); // Database engine initialisation
-var userUniqueId = 'user12345'; //FIXME  Use another user id
 const restartSeconds = 20; // Restart wait seconds
 
 /**

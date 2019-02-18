@@ -1,5 +1,4 @@
 const db = firebase.firestore(); // Database engine initialisation
-var userUniqueId = 'user12345'; //FIXME  Use another user id
 const restartSeconds = 20; // Restart wait seconds
 
 /**
@@ -69,7 +68,7 @@ function restart(dev) {
 	if (isDef(dev)) { lastDevice = copyObj(dev) } //* If a device is given it saves it as the last device
 
 	setTimeout(() => { //* Restarts the app after the given seconds
-		startApp();
+		checkCredentials();
 	}, restartSeconds * 1000);
 }
 

@@ -11,7 +11,7 @@ var app = {
 	 */
 	onDeviceReady: function () {
 		init();
-		startApp();
+		/* startApp(); */
 	}
 };
 
@@ -20,7 +20,17 @@ var app = {
 /**
  * Things to do before the app runs
  */
-function init() { }
+function init() {
+	db.collection("users").get().then(function (querySnapshot) {
+		querySnapshot.forEach(function (doc) {
+			console.log(doc.id + ' - ' + userUniqueId);
+
+			if (doc.id === userUniqueId) {
+				startApp();
+			}
+		});
+	});
+}
 
 //--------------------------------------------------// Initialization of the Vue instances + Cordova app
 
@@ -50,3 +60,7 @@ function toggleDebug() {
 		std.style.display = "block";
 	}
 }
+
+var userUniqueId = '';
+
+window.plugins.uniqueDeviceID.get((id) => { userUniqueId = id });
