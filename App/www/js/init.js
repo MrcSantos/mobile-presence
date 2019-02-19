@@ -9,9 +9,7 @@ var app = {
 	/**
 	 ** The app starts here, after the deviceReady event
 	 */
-	onDeviceReady: function () {
-		checkCredentials(() => { startApp() });
-	}
+	onDeviceReady: function () { getCredentials(() => { checkCredentials(() => { startApp() }) }) }
 };
 
 //--------------------------------------------------// Things to do before the app runs
@@ -19,7 +17,7 @@ var app = {
 /**
  * Checks the user credentials
  */
-function checkCredentials(callback) {
+function getCredentials(callback) {
 	window.plugins.uniqueDeviceID.get((id) => {
 		userUniqueId = id;
 		gui.id = 'Your personal id: ' + id;
@@ -27,14 +25,22 @@ function checkCredentials(callback) {
 
 	db.collection("users").get().then(function (querySnapshot) {
 		querySnapshot.forEach(function (doc) {
-			if (doc.id === userUniqueId) { callback() }
+			if (doc.id === userUniqueId) {
+				isValidUser = true;
+				callback();
+			}
 		});
 	});
+}
+
+function checkCredentials(callback) {
+	if (isValidUser) { callback(); }
 }
 
 //--------------------------------------------------// Initialization of the Vue instances + Cordova app
 
 var userUniqueId = '';
+var isValidUser = false;
 
 const gui = new Vue({
 	el: '#gui',
@@ -76,7 +82,7 @@ function toggleDebug() {
 }
 
 function togglePresences() {
-	getPresences();
+	checkCredentials(() => { getPresences() });
 
 	var dbg = document.getElementById("dbg");
 	var std = document.getElementById("std");

@@ -1,5 +1,7 @@
 async function getPresences() {
 	try {
+		pre.presences = [];
+
 		const result = await db.collection("presences").get();
 
 		result.forEach(async doc => {

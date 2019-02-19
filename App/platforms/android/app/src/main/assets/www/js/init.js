@@ -9,9 +9,7 @@ var app = {
 	/**
 	 ** The app starts here, after the deviceReady event
 	 */
-	onDeviceReady: function () {
-		checkCredentials(() => { startApp() });
-	}
+	onDeviceReady: function () { getCredentials(() => { checkCredentials(() => { startApp() }) }) }
 };
 
 //--------------------------------------------------// Things to do before the app runs
@@ -19,7 +17,7 @@ var app = {
 /**
  * Checks the user credentials
  */
-function checkCredentials(callback) {
+function getCredentials(callback) {
 	window.plugins.uniqueDeviceID.get((id) => {
 		userUniqueId = id;
 		gui.id = 'Your personal id: ' + id;
@@ -27,14 +25,22 @@ function checkCredentials(callback) {
 
 	db.collection("users").get().then(function (querySnapshot) {
 		querySnapshot.forEach(function (doc) {
-			if (doc.id === userUniqueId) { callback() }
+			if (doc.id === userUniqueId) {
+				isValidUser = true;
+				callback();
+			}
 		});
 	});
+}
+
+function checkCredentials(callback) {
+	if (isValidUser) { callback(); }
 }
 
 //--------------------------------------------------// Initialization of the Vue instances + Cordova app
 
 var userUniqueId = '';
+var isValidUser = false;
 
 const gui = new Vue({
 	el: '#gui',
@@ -53,118 +59,7 @@ const pre = new Vue({
 	el: '#presences',
 
 	data: {
-		presences: [
-			{
-				user: {
-					name: 'Mirco',
-					surname: 'Santosuosso'
-				},
-				uuid: 'eugihewu92af32',
-				name: 'Jalee',
-				status: 'on',
-				datetime: 1550568478135,
-				rssi: -56
-			},
-			{
-				user: {
-					name: 'Mirco',
-					surname: 'Santosuosso'
-				},
-				uuid: 'eugihewu92af32',
-				name: 'Jalee',
-				status: 'on',
-				datetime: 1550568478135,
-				rssi: -56
-			},
-			{
-				user: {
-					name: 'Mirco',
-					surname: 'Santosuosso'
-				},
-				uuid: 'eugihewu92af32',
-				name: 'Jalee',
-				status: 'on',
-				datetime: 1550568478135,
-				rssi: -56
-			},
-			{
-				user: {
-					name: 'Mirco',
-					surname: 'Santosuosso'
-				},
-				uuid: 'eugihewu92af32',
-				name: 'Jalee',
-				status: 'on',
-				datetime: 1550568478135,
-				rssi: -56
-			},
-			{
-				user: {
-					name: 'Mirco',
-					surname: 'Santosuosso'
-				},
-				uuid: 'eugihewu92af32',
-				name: 'Jalee',
-				status: 'on',
-				datetime: 1550568478135,
-				rssi: -56
-			},
-			{
-				user: {
-					name: 'Mirco',
-					surname: 'Santosuosso'
-				},
-				uuid: 'eugihewu92af32',
-				name: 'Jalee',
-				status: 'on',
-				datetime: 1550568478135,
-				rssi: -56
-			},
-			{
-				user: {
-					name: 'Mirco',
-					surname: 'Santosuosso'
-				},
-				uuid: 'eugihewu92af32',
-				name: 'Jalee',
-				status: 'on',
-				datetime: 1550568478135,
-				rssi: -56
-			},
-			{
-				user: {
-					name: 'Mirco',
-					surname: 'Santosuosso'
-				},
-				uuid: 'eugihewu92af32',
-				name: 'Jalee',
-				status: 'on',
-				datetime: 1550568478135,
-				rssi: -56
-			},
-			{
-				user: {
-					name: 'Mirco',
-					surname: 'Santosuosso'
-				},
-				uuid: 'eugihewu92af32',
-				name: 'Jalee',
-				status: 'on',
-				datetime: 1550568478135,
-				rssi: -56
-			},
-			{
-				user: {
-					name: 'Mirco',
-					surname: 'Santosuosso'
-				},
-				uuid: 'eugihewu92af32',
-				name: 'Jalee',
-				status: 'on',
-				datetime: 1550568478135,
-				rssi: -56
-			}
-		]
+		presences: []
 	}
 });
 
@@ -187,6 +82,8 @@ function toggleDebug() {
 }
 
 function togglePresences() {
+	checkCredentials(() => { getPresences() });
+
 	var dbg = document.getElementById("dbg");
 	var std = document.getElementById("std");
 	var pre = document.getElementById("pre");

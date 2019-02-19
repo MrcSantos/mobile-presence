@@ -1,5 +1,4 @@
 const db = firebase.firestore(); // Database engine initialisation
-const restartSeconds = 20; // Restart wait seconds
 
 /**
  * Sets the status connection to off and pushes the device proprieties to the db
@@ -37,7 +36,7 @@ function dbWrite(dev, status) {
 		name: dev.name,
 		uuid: dev.id,
 		rssi: dev.rssi,
-		user: db.doc('users/' + userUniqueId),
+		user: userUniqueId,
 		status: status,
 		datetime: datetime
 	};
@@ -61,6 +60,8 @@ function dbWrite(dev, status) {
  * @param {Object} dev The device currently saved in the db
  */
 function restart(dev) {
+	const restartSeconds = 5; // Restart wait seconds
+
 	//* Resets the variables
 	gui.devices = [];
 	scannedDevices = [];

@@ -9,7 +9,7 @@ function writeOnDb(dev, message) {
 		name: dev.name,
 		uuid: dev.id,
 		rssi: dev.rssi,
-		user: db.doc('users/' + userUniqueId),
+		user: userUniqueId,
 		status: status,
 		datetime: datetime,
 		message: message

@@ -17,11 +17,9 @@ body {
 
 .wrapper {
 	width: 90%;
-	height: fit-content;
+	height: 90%;
 
-	padding: 20px;
-
-	overflow: auto;
+	overflow: scroll;
 
 	display: block;
 
@@ -29,6 +27,14 @@ body {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+
+#std .wrapper {
+	height: fit-content;
+
+	overflow: auto;
+
+	padding: 20px;
 }
 
 .space-big {

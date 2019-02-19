@@ -1,14 +1,14 @@
 async function getPresences() {
+	pre.presences = [];
+
 	try {
-		let result = await db.collection("presences").get();
+		const result = await db.collection("presences").get();
 
 		result.forEach(async doc => {
-			var presence = doc.data();
+			const presence = doc.data();
 
-			var userDoc = await db.collection("users").doc(presence.user).get();
-			var user = userDoc.data();
-
-			console.log(user);
+			const userDoc = await db.collection("users").doc(presence.user).get();
+			const user = userDoc.data();
 
 			const data = {
 				name: presence.name,
@@ -19,9 +19,10 @@ async function getPresences() {
 				status: presence.status,
 				datetime: presence.datetime
 			}
+
 			pre.presences.push(data)
 		})
 	} catch (error) {
-		console.log(error.message)
+		gui.db = 'fail';
 	}
 }
