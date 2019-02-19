@@ -37,7 +37,7 @@ function dbWrite(dev, status) {
 		name: dev.name,
 		uuid: dev.id,
 		rssi: dev.rssi,
-		user: userUniqueId,
+		user: db.doc('users/' + userUniqueId),
 		status: status,
 		datetime: datetime
 	};
@@ -68,7 +68,7 @@ function restart(dev) {
 	if (isDef(dev)) { lastDevice = copyObj(dev) } //* If a device is given it saves it as the last device
 
 	setTimeout(() => { //* Restarts the app after the given seconds
-		startApp();
+		checkCredentials();
 	}, restartSeconds * 1000);
 }
 

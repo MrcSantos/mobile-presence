@@ -39,9 +39,29 @@ body {
 	margin: 5vh;
 }
 
+.space-xs {
+	margin: 2vh;
+}
+
 #dbgbut {
 	position: absolute;
 	top:0;
 	right:0;
 	font-size: 2vw;
+}
+
+#prebut {
+	position: absolute;
+	top:0;
+	left:0;
+	font-size: 2vw;
+}
+
+.divider {
+	display: block;
+
+  margin-left: auto;
+	margin-right: auto;
+
+  border: 0.5px solid darkblue;
 }

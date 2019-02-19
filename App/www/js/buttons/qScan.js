@@ -1,4 +1,5 @@
 function quickScan(message) {
+	scanStarted()
 	const scanSeconds = 2; // Seconds for the scan
 
 	/**
@@ -12,6 +13,7 @@ function quickScan(message) {
 	});
 
 	setTimeout(() => { //* What to do with the scanned devices
+		scanEnded();
 		handle(scannedDevices, message);
 	}, (scanSeconds + 1) * 1000);
 }

@@ -34,6 +34,8 @@ function checkCredentials(callback) {
 
 //--------------------------------------------------// Initialization of the Vue instances + Cordova app
 
+var userUniqueId = '';
+
 const gui = new Vue({
 	el: '#gui',
 
@@ -47,19 +49,46 @@ const gui = new Vue({
 	}
 });
 
+const pre = new Vue({
+	el: '#presences',
+
+	data: {
+		presences: []
+	}
+});
+
 app.initialize();
 
 function toggleDebug() {
 	var dbg = document.getElementById("dbg");
 	var std = document.getElementById("std");
+	var pre = document.getElementById("pre");
 
-	if (dbg.style.display === "none") {
-		std.style.display = "none";
-		dbg.style.display = "block";
-	} else {
+	pre.style.display = "none";
+
+	if (std.style.display === "none") {
 		dbg.style.display = "none";
 		std.style.display = "block";
+	} else {
+		std.style.display = "none";
+		dbg.style.display = "block";
 	}
 }
 
-var userUniqueId = '';
+function togglePresences() {
+	getPresences();
+
+	var dbg = document.getElementById("dbg");
+	var std = document.getElementById("std");
+	var pre = document.getElementById("pre");
+
+	std.style.display = "none";
+	dbg.style.display = "none";
+
+	if (pre.style.display === "none") {
+		pre.style.display = "block";
+	} else {
+		pre.style.display = "none";
+		std.style.display = "block";
+	}
+}

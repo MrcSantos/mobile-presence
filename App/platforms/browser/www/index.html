@@ -12,6 +12,8 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="css/default.css">
 	<link rel="stylesheet" type="text/css" media="screen" href="css/header.css">
 	<link rel="stylesheet" type="text/css" media="screen" href="css/buttons.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="css/presences.css">
+
 	<link rel="stylesheet" type="text/css" media="screen" href="css/debug/status.css">
 	<link rel="stylesheet" type="text/css" media="screen" href="css/debug/devices.css">
 	<title>Mobile presence</title>
@@ -19,10 +21,20 @@
 
 <body>
 	<button id="dbgbut" onclick="toggleDebug()">Debug</button>
+	<button id="prebut" onclick="togglePresences()">Presences</button>
+
+	<div id="pre" style="display: none;">
+		<div class="wrapper">
+			<div id="presences">
+				<presences v-for='presence in presences' :presence='presence'></presences>
+			</div>
+		</div>
+	</div>
 
 	<div id="dbg" style="display: none;">
 		<div id="gui">
 			<status :bt='bt' :scan='scan' :db='db'></status>
+			<span>{{ id }}</span>
 			<span>{{ debug }}</span>
 			<hr>
 			<div class="w3-content button-group">
@@ -55,9 +67,12 @@
 	</div>
 
 	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="js/lib/moment.js"></script>
 	<script type="text/javascript" src="js/lib/vue.js"></script>
+
 	<script type="text/javascript" src="js/components/status.js"></script>
 	<script type="text/javascript" src="js/components/devices.js"></script>
+	<script type="text/javascript" src="js/components/presences.js"></script>
 
 	<script src="js/lib/firebase.js"></script>
 	<script src="js/lib/firebase-app.js"></script>
@@ -84,6 +99,7 @@
 	<script type="text/javascript" src="js/buttons/check.js"></script>
 	<script type="text/javascript" src="js/buttons/qScan.js"></script>
 	<script type="text/javascript" src="js/buttons/handler.js"></script>
+	<script type="text/javascript" src="js/presences.js"></script>
 
 </body>
 
