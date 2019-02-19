@@ -26,7 +26,7 @@
 	<div id="pre" style="display: none;">
 		<div class="wrapper">
 			<div id="presences">
-				<presences v-for='presence in presences' :presence='presence'></presences>
+				<presences v-for='presence in presences' :presence='presence' :key="presence.datetime"></presences>
 			</div>
 		</div>
 	</div>

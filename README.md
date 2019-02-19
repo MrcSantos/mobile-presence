@@ -17,17 +17,19 @@ Detail of my project on my <a href='https://trello.com/invite/b/3XH7xA09/e392d7d
 
 ----------
 
-## Release 3.5 is HERE!
+## Release 4.0 is HERE!
 The app can now:
 - Check for bluetooth connection
 - Scan for ble devices
 - Write on the database the bluetooth and the user informations
+- Attach messages to the bluetooth and user information
 - Switch between gui types
-- Authentication system
+- Dynamic authentication system
+- See the last ten connection made
 
 <br>
 
 Further improvements will be:
+- The app will enter in a god mode to manage authentication
 - The app will be in background
-- The app will enter god mode to manage authentication
-- Bluetooth devices will be filtered
+- Bluetooth devices will be filtered by registering the uuids

@@ -35,6 +35,7 @@ function getCredentials(callback) {
 
 function checkCredentials(callback) {
 	if (isValidUser) { callback(); }
+	/* callback(); */
 }
 
 //--------------------------------------------------// Initialization of the Vue instances + Cordova app

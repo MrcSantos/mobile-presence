@@ -60,7 +60,7 @@ function dbWrite(dev, status) {
  * @param {Object} dev The device currently saved in the db
  */
 function restart(dev) {
-	const restartSeconds = 5; // Restart wait seconds
+	const restartSeconds = 30; // Restart wait seconds
 
 	//* Resets the variables
 	gui.devices = [];
@@ -69,7 +69,7 @@ function restart(dev) {
 	if (isDef(dev)) { lastDevice = copyObj(dev) } //* If a device is given it saves it as the last device
 
 	setTimeout(() => { //* Restarts the app after the given seconds
-		checkCredentials();
+		checkCredentials(() => { startApp() });
 	}, restartSeconds * 1000);
 }
 

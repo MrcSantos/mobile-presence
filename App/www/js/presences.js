@@ -2,7 +2,7 @@ async function getPresences() {
 	try {
 		pre.presences = [];
 
-		const result = await db.collection("presences").get();
+		const result = await db.collection("presences").orderBy("datetime", "desc").limit(50).get();
 
 		result.forEach(async doc => {
 			const presence = doc.data();
