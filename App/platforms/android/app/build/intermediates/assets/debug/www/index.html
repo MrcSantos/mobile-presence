@@ -9,10 +9,13 @@
 	<meta name="viewport"
 		content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
 	<link rel="stylesheet" type="text/css" media="screen" href="css/lib/w3.css">
-	<link rel="stylesheet" type="text/css" media="screen" href="css/default.css">
-	<link rel="stylesheet" type="text/css" media="screen" href="css/header.css">
-	<link rel="stylesheet" type="text/css" media="screen" href="css/buttons.css">
-	<link rel="stylesheet" type="text/css" media="screen" href="css/presences.css">
+
+	<link rel="stylesheet" type="text/css" media="screen" href="css/common.css">
+
+	<link rel=" stylesheet" type="text/css" media="screen" href="css/standard/header.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="css/standard/buttons.css">
+
+	<link rel="stylesheet" type="text/css" media="screen" href="css/presences/presences.css">
 
 	<link rel="stylesheet" type="text/css" media="screen" href="css/debug/status.css">
 	<link rel="stylesheet" type="text/css" media="screen" href="css/debug/devices.css">
@@ -67,12 +70,9 @@
 	</div>
 
 	<script type="text/javascript" src="cordova.js"></script>
+
 	<script type="text/javascript" src="js/lib/moment.js"></script>
 	<script type="text/javascript" src="js/lib/vue.js"></script>
-
-	<script type="text/javascript" src="js/components/status.js"></script>
-	<script type="text/javascript" src="js/components/devices.js"></script>
-	<script type="text/javascript" src="js/components/presences.js"></script>
 
 	<script src="js/lib/firebase.js"></script>
 	<script src="js/lib/firebase-app.js"></script>
@@ -90,17 +90,26 @@
 	</script>
 	<script src="js/lib/firebase-firestore.js"></script>
 
-	<script type="text/javascript" src="js/dbAPIs.js"></script>
-	<script type="text/javascript" src="js/buttons/db.js"></script>
-	<script type="text/javascript" src="js/btScan.js"></script>
-	<script type="text/javascript" src="js/btHandler.js"></script>
-	<script type="text/javascript" src="js/init.js"></script>
-	<script type="text/javascript" src="js/btCheck.js"></script>
-	<script type="text/javascript" src="js/buttons/check.js"></script>
-	<script type="text/javascript" src="js/buttons/qScan.js"></script>
-	<script type="text/javascript" src="js/buttons/handler.js"></script>
-	<script type="text/javascript" src="js/presences.js"></script>
+	<script type="text/javascript" src="js/components/status.js"></script>
+	<script type="text/javascript" src="js/components/devices.js"></script>
+	<script type="text/javascript" src="js/components/presences.js"></script>
 
+
+	<script type="text/javascript" src="js/app/dbAPIs.js"></script>
+	<script type="text/javascript" src="js/message/db.js"></script>
+
+	<script type="text/javascript" src="js/app/btHandler.js"></script>
+	<script type="text/javascript" src="js/message/handler.js"></script>
+
+	<script type="text/javascript" src="js/app/btScan.js"></script>
+	<script type="text/javascript" src="js/message/qScan.js"></script>
+
+	<script type="text/javascript" src="js/app/btCheck.js"></script>
+	<script type="text/javascript" src="js/message/check.js"></script>
+
+	<script type="text/javascript" src="js/presences/presences.js"></script>
+
+	<script type="text/javascript" src="js/init.js"></script>
 </body>
 
 </html>
