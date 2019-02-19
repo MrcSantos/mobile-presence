@@ -37,8 +37,8 @@
 	<div id="dbg" style="display: none;">
 		<div id="gui">
 			<status :bt='bt' :scan='scan' :db='db'></status>
-			<span>{{ id }}</span>
-			<span>{{ debug }}</span>
+			<span>{{ id }}</span><br>
+			<span style="color: firebrick">{{ debug }}</span>
 			<hr>
 			<div class="w3-content button-group">
 				<button class="positive" onclick="sendMessage('Positivo')">Positivo</button>
@@ -90,10 +90,13 @@
 	</script>
 	<script src="js/lib/firebase-firestore.js"></script>
 
-	<script type="text/javascript" src="js/components/status.js"></script>
-	<script type="text/javascript" src="js/components/devices.js"></script>
-	<script type="text/javascript" src="js/components/presences.js"></script>
+	<script type="text/javascript" src="js/components/vue/status.js"></script>
+	<script type="text/javascript" src="js/components/vue/devices.js"></script>
+	<script type="text/javascript" src="js/components/vue/presences.js"></script>
 
+	<script type="text/javascript" src="js/components/js/vueInit.js"></script>
+	<script type="text/javascript" src="js/components/js/buttons.js"></script>
+	<script type="text/javascript" src="js/components/js/credentials.js"></script>
 
 	<script type="text/javascript" src="js/app/dbAPIs.js"></script>
 	<script type="text/javascript" src="js/message/db.js"></script>

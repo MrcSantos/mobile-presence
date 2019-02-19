@@ -1,4 +1,4 @@
-Vue.filter('format', function (value) { return moment(value).format("[On] DD/MM/YY [at] hh:mm:ss") })
+Vue.filter('format', function (value) { return moment(value).format("[On] DD/MM/YY [at] hh:mm:ss") }) //* Converts the date
 
 Vue.component('presences', {
 	props: {
