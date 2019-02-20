@@ -28,7 +28,7 @@ function getCredentials(callback) {
 /**
  * Checks if the user is authenticated
  */
-function checkCredentials(callback) {
-	if (isValidUser) { callback() }
-	else { gui.debug = 'User NOT authenticated' }
+function checkCredentials(success, fail) {
+	if (isValidUser) { success() }
+	else { if (fail) { fail() } }
 }

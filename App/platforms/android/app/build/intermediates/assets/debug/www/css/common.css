@@ -29,6 +29,15 @@ body {
   transform: translate(-50%, -50%);
 }
 
+#pre .wrapper {
+	height: 85%;
+
+	position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -46.5%);
+}
+
 #std .wrapper {
 	height: fit-content;
 
@@ -49,20 +58,6 @@ body {
 	margin: 2vh;
 }
 
-#dbgbut {
-	position: absolute;
-	top:0;
-	right:0;
-	font-size: 2vw;
-}
-
-#prebut {
-	position: absolute;
-	top:0;
-	left:0;
-	font-size: 2vw;
-}
-
 .divider {
 	display: block;
 
@@ -70,4 +65,15 @@ body {
 	margin-right: auto;
 
   border: 0.5px solid darkblue;
+}
+
+#dbgbut,
+#prebut,
+#autbut,
+#stdbut {
+	width: 25%;
+}
+
+.upper-menu {
+	font-size: 100%;
 }

@@ -1,39 +1,43 @@
+var debugPage = document.getElementById("dbg");
+var standardPage = document.getElementById("std");
+var presencesPage = document.getElementById("pre");
+var authorizationPage = document.getElementById("aut");
+/* The pages parts */
+
+function goToStandard() {
+	presencesPage.style.display = "none";
+	authorizationPage.style.display = "none";
+	debugPage.style.display = "none";
+	standardPage.style.display = "block";
+}
+
 /**
- * Toggles the debug panel
- */
-function toggleDebug() {
-	var dbg = document.getElementById("dbg");
-	var std = document.getElementById("std");
-	var pre = document.getElementById("pre");
-
-	pre.style.display = "none";
-
-	if (std.style.display === "none") {
-		dbg.style.display = "none";
-		std.style.display = "block";
-	}
-	else {
-		std.style.display = "none";
-		dbg.style.display = "block";
-	}
+* Toggles the debug panel
+*/
+function goToDebug() {
+	standardPage.style.display = "none";
+	presencesPage.style.display = "none";
+	authorizationPage.style.display = "none";
+	debugPage.style.display = "block";
 }
 
 /**
  * Toggles the Presences panel
  */
-function togglePresences() {
-	checkCredentials(() => { getPresences(); });
+function goToPresences() {
+	debugPage.style.display = "none";
+	standardPage.style.display = "none";
+	authorizationPage.style.display = "none";
+	presencesPage.style.display = "block";
 
-	var dbg = document.getElementById("dbg");
-	var std = document.getElementById("std");
-	var pre = document.getElementById("pre");
+	checkCredentials(() => { getPresences() });
+}
 
-	std.style.display = "none";
-	dbg.style.display = "none";
+function goToAuth() {
+	debugPage.style.display = "none";
+	standardPage.style.display = "none";
+	presencesPage.style.display = "none";
+	authorizationPage.style.display = "block";
 
-	if (pre.style.display === "none") { pre.style.display = "block" }
-	else {
-		pre.style.display = "none";
-		std.style.display = "block";
-	}
+	checkCredentials(() => { authenticated() }, () => { notAuthenticated() })
 }

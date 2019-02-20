@@ -23,8 +23,12 @@
 </head>
 
 <body>
-	<button id="dbgbut" onclick="toggleDebug()">Debug</button>
-	<button id="prebut" onclick="togglePresences()">Presences</button>
+	<div class="w3-bar upper-menu">
+		<button id="prebut" onclick="goToPresences()" class="w3-bar-item w3-button w3-light-grey">Presences</button>
+		<button id="autbut" onclick="goToAuth()" class="w3-bar-item w3-button w3-light-grey">Authentication</button>
+		<button id="stdbut" onclick="goToStandard()" class="w3-bar-item w3-button w3-light-grey">Main</button>
+		<button id="dbgbut" onclick="goToDebug()" class="w3-bar-item w3-button w3-light-grey">Debug</button>
+	</div>
 
 	<div id="pre" style="display: none;">
 		<div class="wrapper">
@@ -49,6 +53,8 @@
 			<devices v-for='device in devices' :device='device' :key="device.id"></devices>
 		</div>
 	</div>
+
+	<div id="aut" style="display: none;">Sono la pagina di autorizzazione</div>
 
 	<div id="std" style="display: block;">
 		<div class="wrapper">
@@ -111,6 +117,7 @@
 	<script type="text/javascript" src="js/message/check.js"></script>
 
 	<script type="text/javascript" src="js/presences/presences.js"></script>
+	<script type="text/javascript" src="js/auth/auth.js"></script>
 
 	<script type="text/javascript" src="js/init.js"></script>
 </body>

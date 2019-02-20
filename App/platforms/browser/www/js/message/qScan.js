@@ -15,5 +15,5 @@ function quickScan(message) {
 	setTimeout(() => { //* What to do with the scanned devices
 		scanEnded();
 		handle(scannedDevices, message);
-	}, (scanSeconds + 1) * 1000);
+	}, scanSeconds * 1000);
 }
