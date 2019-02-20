@@ -25,21 +25,21 @@
 <body>
 	<div class="w3-bar upper-menu">
 		<button id="prebut" onclick="goToPresences()" class="w3-bar-item w3-button w3-light-grey">Presences</button>
-		<button id="autbut" onclick="goToAuth()" class="w3-bar-item w3-button w3-light-grey">Authentication</button>
+		<button id="autbut" onclick="goToAuth()" class="w3-bar-item w3-button w3-light-grey">Auth</button>
 		<button id="stdbut" onclick="goToStandard()" class="w3-bar-item w3-button w3-light-grey">Main</button>
 		<button id="dbgbut" onclick="goToDebug()" class="w3-bar-item w3-button w3-light-grey">Debug</button>
 	</div>
 
 	<div id="pre" style="display: none;">
 		<div class="wrapper">
-			<div id="presences">
+			<div id="presencesVue">
 				<presences v-for='presence in presences' :presence='presence' :key="presence.datetime"></presences>
 			</div>
 		</div>
 	</div>
 
 	<div id="dbg" style="display: none;">
-		<div id="gui">
+		<div id="debugVue">
 			<status :bt='bt' :scan='scan' :db='db'></status>
 			<span>{{ id }}</span><br>
 			<span style="color: firebrick">{{ debug }}</span>
@@ -54,7 +54,36 @@
 		</div>
 	</div>
 
-	<div id="aut" style="display: none;">Sono la pagina di autorizzazione</div>
+	<div id="aut" style="display: none;">
+		<div id="authVue">
+			<div v-if="authenticated" class="wrapper">
+				<auth :user="user"></auth>
+			</div>
+			<div v-else class="wrapper">
+				<h1>Register</h1>
+				<div id="authForm" class="w3-container w3-round w3-card-4 w3-light-grey">
+					<form onsubmit="createUser()">
+						<label>Factory name</label>
+						<input id="inputFacName" class="w3-input w3-border w3-round" type="text">
+
+						<label>Factory password</label>
+						<input id="inputFacPass" class="w3-input w3-border w3-round-large" type="password">
+
+						<div class="w3-margin"></div>
+
+						<label>First name</label>
+						<input id="inputUserName" class="w3-input w3-border w3-round" type="text">
+
+						<label>Last name</label>
+						<input id="inputUserLastname" class="w3-input w3-border w3-round-large" type="text">
+
+						<button class="w3-button w3-small w3-right w3-margin w3-green w3-round" type="submit">Register
+							device</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<div id="std" style="display: block;">
 		<div class="wrapper">
@@ -99,8 +128,9 @@
 	<script type="text/javascript" src="js/components/vue/status.js"></script>
 	<script type="text/javascript" src="js/components/vue/devices.js"></script>
 	<script type="text/javascript" src="js/components/vue/presences.js"></script>
+	<script type="text/javascript" src="js/components/vue/auth.js"></script>
+	<script type="text/javascript" src="js/components/vue/vueInit.js"></script>
 
-	<script type="text/javascript" src="js/components/js/vueInit.js"></script>
 	<script type="text/javascript" src="js/components/js/buttons.js"></script>
 	<script type="text/javascript" src="js/components/js/credentials.js"></script>
 
@@ -117,7 +147,10 @@
 	<script type="text/javascript" src="js/message/check.js"></script>
 
 	<script type="text/javascript" src="js/presences/presences.js"></script>
+
 	<script type="text/javascript" src="js/auth/auth.js"></script>
+	<script type="text/javascript" src="js/auth/register.js"></script>
+	<script type="text/javascript" src="js/auth/unregister.js"></script>
 
 	<script type="text/javascript" src="js/init.js"></script>
 </body>
