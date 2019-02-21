@@ -1,6 +1,7 @@
 var debugPage = document.getElementById("dbg");
 var standardPage = document.getElementById("std");
 var presencesPage = document.getElementById("pre");
+var blePage = document.getElementById("ble");
 var authorizationPage = document.getElementById("aut");
 /* The pages parts */
 
@@ -10,6 +11,7 @@ var authorizationPage = document.getElementById("aut");
 function goToStandard() {
 	presencesPage.style.display = "none";
 	authorizationPage.style.display = "none";
+	blePage.style.display = "none";
 	debugPage.style.display = "none";
 	standardPage.style.display = "block";
 }
@@ -20,6 +22,7 @@ function goToStandard() {
 function goToDebug() {
 	standardPage.style.display = "none";
 	presencesPage.style.display = "none";
+	blePage.style.display = "none";
 	authorizationPage.style.display = "none";
 	debugPage.style.display = "block";
 }
@@ -30,6 +33,7 @@ function goToDebug() {
 function goToPresences() {
 	debugPage.style.display = "none";
 	standardPage.style.display = "none";
+	blePage.style.display = "none";
 	authorizationPage.style.display = "none";
 	presencesPage.style.display = "block";
 
@@ -43,7 +47,16 @@ function goToAuth() {
 	debugPage.style.display = "none";
 	standardPage.style.display = "none";
 	presencesPage.style.display = "none";
+	blePage.style.display = "none";
 	authorizationPage.style.display = "block";
 
 	checkCredentials(() => { authenticated() }, () => { notAuthenticated() })
+}
+
+function goToBle() {
+	debugPage.style.display = "none";
+	standardPage.style.display = "none";
+	presencesPage.style.display = "none";
+	authorizationPage.style.display = "none";
+	blePage.style.display = "block";
 }

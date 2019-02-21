@@ -20,12 +20,12 @@ function startApp() {
  * Updates the bt status, showing the ok icon
  */
 function btOk() {
-	gui.bt = 'ok';
+	dbgVue.bt = 'ok';
 }
 
 /**
  * Updates the bt status, showing the fail icon
  */
 function btFail() {
-	gui.bt = 'fail';
+	dbgVue.bt = 'fail';
 }

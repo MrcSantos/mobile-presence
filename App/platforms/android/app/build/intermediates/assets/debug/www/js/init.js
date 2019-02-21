@@ -9,7 +9,12 @@ var app = {
 	/**
 	 ** The app starts here, after the deviceReady event
 	 */
-	onDeviceReady: function () { getCredentials(() => { startApp() }) }
+	onDeviceReady: function () {
+		getCredentials(() => {
+			authenticated();
+			startApp();
+		}, () => { notAuthenticated() })
+	}
 };
 
 app.initialize();

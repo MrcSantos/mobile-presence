@@ -3,8 +3,7 @@
 }
 
 body {
-	-webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
-	-webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+	-webkit-user-select: text;
 
 	background: no-repeat;
 	background-attachment:fixed;
@@ -16,12 +15,12 @@ body {
 }
 
 .wrapper {
-	width: 90%;
+	width: 100%;
 	height: 90%;
 
-	overflow: scroll;
+	padding: 0 5vw;
 
-	display: block;
+	overflow: scroll;
 
 	position: absolute;
   left: 50%;
@@ -47,7 +46,8 @@ body {
 	padding: 20px;
 }
 
-#authForm {
+#authForm,
+#bleForm {
 	padding: 3vw;
 }
 
@@ -75,10 +75,20 @@ body {
 #dbgbut,
 #prebut,
 #autbut,
-#stdbut {
-	width: 25%;
+#stdbut,
+#blebut {
+	width: 20%;
 }
 
-.upper-menu {
-	font-size: 100%;
+.not-authenticated-message {
+	width: fit-content;
+	height: fit-content;
+
+	color: firebrick;
+	text-align: center;
+
+	position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }

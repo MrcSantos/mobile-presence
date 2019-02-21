@@ -7,7 +7,7 @@ var isValidUser = false; //* Lazy solution for checking if the user is authentic
 function getCredentials(success, fail) {
 	window.plugins.uniqueDeviceID.get((id) => { //* Gets the device ID
 		userUniqueId = id;
-		gui.id = 'Your personal id: ' + id;
+		dbgVue.id = 'Your personal id: ' + id;
 
 		/**
 		 * Checks wether the user exists or not
@@ -16,15 +16,11 @@ function getCredentials(success, fail) {
 			.get()
 			.then((user) => {
 				if (user.exists) {
-					isValidUser = true;
-					authVue.authenticated = true;
-
 					success();
-				} else { if (fail) { fail() } }
+				} else { fail() }
 			})
 			.catch((error) => { dbFail() }) //* Error getting the document
 	});
-
 }
 
 /**

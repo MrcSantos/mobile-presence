@@ -1,4 +1,4 @@
-const gui = new Vue({ //* For the debug page
+const dbgVue = new Vue({ //* For the debug page
 	el: '#debugVue',
 	data: {
 		bt: 'init',
@@ -6,21 +6,38 @@ const gui = new Vue({ //* For the debug page
 		db: 'init',
 		id: '',
 		debug: '',
-		devices: []
+		devices: [],
+		authenticated: true
 	}
 });
 
-const pre = new Vue({ //* For the presences page
+const preVue = new Vue({ //* For the presences page
 	el: '#presencesVue',
 	data: {
-		presences: []
+		presences: [],
+		authenticated: true
 	}
 });
 
-const authVue = new Vue({ //* For the presences page
+const authVue = new Vue({ //* For the auth page
 	el: '#authVue',
 	data: {
 		user: {},
-		authenticated: false
+		authenticated: true
+	}
+});
+
+const stdVue = new Vue({ //* For the std page
+	el: '#stdVue',
+	data: {
+		authenticated: true
+	}
+});
+
+const bleVue = new Vue({ //* For the presences page
+	el: '#bleVue',
+	data: {
+		authenticated: true,
+		devices: []
 	}
 });

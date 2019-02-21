@@ -63,12 +63,13 @@ function restart(dev) {
 	const restartSeconds = 30; // Restart wait seconds
 
 	//* Resets the variables
-	debug.devices = [];
 	scannedDevices = [];
 
 	if (isDef(dev)) { lastDevice = copyObj(dev) } //* If a device is given it saves it as the last device
 
 	setTimeout(() => { //* Restarts the app after the given seconds
+		dbgVue.devices = [];
+		bleVue.devices = [];
 		checkCredentials(() => { startApp() });
 	}, restartSeconds * 1000);
 }
@@ -88,14 +89,14 @@ function copyObj(obj) {
  * Updates the db status, showing the running icon
  */
 function dbStart() {
-	debug.db = 'running';
+	dbgVue.db = 'running';
 }
 
 /**
  * Updates the db status, showing the ok icon
  */
 function dbStop() {
-	debug.db = 'ok';
+	dbgVue.db = 'ok';
 }
 
 /**
@@ -103,5 +104,5 @@ function dbStop() {
  */
 function dbFail(e) {
 	console.log(e);
-	debug.db = 'fail';
+	dbgVue.db = 'fail';
 }

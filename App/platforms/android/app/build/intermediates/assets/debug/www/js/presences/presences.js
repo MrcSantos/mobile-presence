@@ -3,7 +3,7 @@
  */
 async function getPresences() {
 	try {
-		pre.presences = [];
+		preVue.presences = [];
 
 		const result = await db.collection("presences").orderBy("datetime", "desc").limit(50).get(); //* Firebase query
 
@@ -23,7 +23,7 @@ async function getPresences() {
 				datetime: presence.datetime
 			}
 
-			pre.presences.push(data) //* Renders the presences by pushing them one by one
+			preVue.presences.push(data) //* Renders the presences by pushing them one by one
 		})
-	} catch (error) { gui.db = 'fail' } //* Error getting the document
+	} catch (error) { dbgVue.db = 'fail' } //* Error getting the document
 }

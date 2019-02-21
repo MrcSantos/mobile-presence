@@ -24,33 +24,44 @@
 
 <body>
 	<div class="w3-bar upper-menu">
-		<button id="prebut" onclick="goToPresences()" class="w3-bar-item w3-button w3-light-grey">Presences</button>
-		<button id="autbut" onclick="goToAuth()" class="w3-bar-item w3-button w3-light-grey">Auth</button>
+		<button id="prebut" onclick="goToPresences()" class="w3-bar-item w3-button w3-light-grey">Pres</button>
+		<button id="blebut" onclick="goToBle()" class="w3-bar-item w3-button w3-light-grey">Ble</button>
 		<button id="stdbut" onclick="goToStandard()" class="w3-bar-item w3-button w3-light-grey">Main</button>
-		<button id="dbgbut" onclick="goToDebug()" class="w3-bar-item w3-button w3-light-grey">Debug</button>
+		<button id="autbut" onclick="goToAuth()" class="w3-bar-item w3-button w3-light-grey">Auth</button>
+		<button id="dbgbut" onclick="goToDebug()" class="w3-bar-item w3-button w3-light-grey">Dbg</button>
 	</div>
 
 	<div id="pre" style="display: none;">
-		<div class="wrapper">
-			<div id="presencesVue">
+		<div id="presencesVue">
+			<div v-if="authenticated" class="wrapper">
 				<presences v-for='presence in presences' :presence='presence' :key="presence.datetime"></presences>
+			</div>
+			<div v-else class="not-authenticated-message">
+				<p style="color: firebrick">You are not authenticated</p>
+				<button onclick="goToAuth()" class="w3-bar-item w3-button w3-light-grey">Authenticate</button>
 			</div>
 		</div>
 	</div>
 
 	<div id="dbg" style="display: none;">
 		<div id="debugVue">
-			<status :bt='bt' :scan='scan' :db='db'></status>
-			<span>{{ id }}</span><br>
-			<span style="color: firebrick">{{ debug }}</span>
-			<hr>
-			<div class="w3-content button-group">
-				<button class="positive" onclick="sendMessage('Positivo')">Positivo</button>
-				<div class="space-little"></div>
-				<button class="negative" onclick="sendMessage('Negativo')">Negativo</button>
+			<div v-if="authenticated">
+				<status :bt='bt' :scan='scan' :db='db'></status>
+				<span>{{ id }}</span><br>
+				<span style="color: firebrick">{{ debug }}</span>
+				<hr>
+				<div class="w3-content button-group">
+					<button class="positive" onclick="sendMessage('Positivo')">Positivo</button>
+					<div class="space-little"></div>
+					<button class="negative" onclick="sendMessage('Negativo')">Negativo</button>
+				</div>
+				<hr>
+				<devices v-for='device in devices' :device='device' :key="device.id"></devices>
 			</div>
-			<hr>
-			<devices v-for='device in devices' :device='device' :key="device.id"></devices>
+			<div v-else class="not-authenticated-message">
+				<p style="color: firebrick">You are not authenticated</p>
+				<button onclick="goToAuth()" class="w3-bar-item w3-button w3-light-grey">Authenticate</button>
+			</div>
 		</div>
 	</div>
 
@@ -60,14 +71,14 @@
 				<auth :user="user"></auth>
 			</div>
 			<div v-else class="wrapper">
-				<h1>Register</h1>
+				<h1>Register user</h1>
 				<div class="w3-container w3-round w3-card-4 w3-light-grey">
 					<form onsubmit="return false" id="authForm">
 						<label>Factory name</label>
 						<input id="inputFacName" class="w3-input w3-border w3-round" type="text">
 
 						<label>Factory password</label>
-						<input id="inputFacPass" class="w3-input w3-border w3-round-large" type="password">
+						<input id="inputFacPass" class="w3-input w3-border w3-round" type="password">
 
 						<div class="w3-margin"></div>
 
@@ -78,29 +89,68 @@
 						<input id="inputUserLastname" class="w3-input w3-border w3-round-large" type="text">
 
 						<button onclick="createUser()" class="w3-button w3-small w3-right w3-margin w3-green w3-round"
-							type="submit">Register
-							device</button>
+							type="submit">Register user on this device</button>
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
 
+	<div id="ble" style="display: none;">
+		<div id="bleVue">
+			<div v-if="authenticated" class="wrapper">
+				<h1>Register ble</h1>
+				<div class="w3-container w3-round w3-card-4 w3-light-grey">
+					<form onsubmit="return false" id="bleForm">
+						<label>Factory name</label>
+						<input id="inputBleFacName" class="w3-input w3-border w3-round" type="text">
+
+						<label>Factory password</label>
+						<input id="inputBleFacPass" class="w3-input w3-border w3-round" type="password">
+
+						<div class="w3-margin"></div>
+
+						<label>Room name</label>
+						<input id="inputRoomName" class="w3-input w3-border w3-round" type="text">
+
+						<label>Bluetooth id</label>
+						<input id="inputBleId" class="w3-input w3-border w3-round" type="text">
+
+						<button onclick="addBleDev()" class="w3-button w3-small w3-right w3-margin w3-green w3-round"
+							type="submit">Register ble device</button>
+					</form>
+				</div>
+				<hr>
+				<devices v-for='device in devices' :device='device' :key="device.id"></devices>
+			</div>
+			<div v-else class="not-authenticated-message">
+				<p style="color: firebrick">You are not authenticated</p>
+				<button onclick="goToAuth()" class="w3-bar-item w3-button w3-light-grey">Authenticate</button>
+			</div>
+		</div>
+	</div>
+
 	<div id="std" style="display: block;">
-		<div class="wrapper">
-			<div class="w3-content" style="max-width: 90%;">
-				<div class="header">
-					<div class="logo"><img src="img/logo.png" alt="logo" height="100vh"></div>
-					<span class="title">Mobile presence</span>
-				</div>
+		<div id="stdVue">
+			<div v-if="authenticated" class="wrapper">
+				<div class="w3-content" style="max-width: 90%;">
+					<div class="header">
+						<div class="logo"><img src="img/logo.png" alt="logo" height="100vh"></div>
+						<span class="title">Mobile presence</span>
+					</div>
 
-				<div class="space-big"></div>
+					<div class="space-big"></div>
 
-				<div class="w3-content button-group">
-					<button class="positive" onclick="sendMessage('Positivo')">Positivo</button>
-					<div class="space-little"></div>
-					<button class="negative" onclick="sendMessage('Negativo')">Negativo</button>
+					<div class="w3-content button-group">
+						<button class="positive" onclick="sendMessage('Positivo')">Positivo</button>
+						<div class="space-little"></div>
+						<button class="negative" onclick="sendMessage('Negativo')">Negativo</button>
+					</div>
 				</div>
+			</div>
+			<div v-else class="not-authenticated-message">
+				<p style="color: firebrick">You are not authenticated</p>
+				<button onclick="goToAuth()" class="w3-bar-item w3-button w3-light-grey">Authenticate</button>
 			</div>
 		</div>
 	</div>

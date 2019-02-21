@@ -34,7 +34,8 @@ function startScan() {
 function filterDevice(device) {
 	if (isDef(device.name)) {
 		scannedDevices.push(device);
-		debug.devices.push(device);
+		dbgVue.devices.push(device);
+		bleVue.devices.push(device);
 	}
 }
 
@@ -53,19 +54,21 @@ function isDef(any) {
  * Updates the scan status, showing the running icon
  */
 function scanStarted() {
-	debug.scan = 'running';
+	dbgVue.devices = [];
+	bleVue.devices = [];
+	dbgVue.scan = 'running';
 }
 
 /**
  * Updates the scan status, showing the ok icon
  */
 function scanEnded() {
-	debug.scan = 'ok';
+	dbgVue.scan = 'ok';
 }
 
 /**
  * Updates the scan status, showing the fail icon and resets the app in order to check the bt
  */
 function scanFailed() {
-	debug.scan = 'fail';
+	dbgVue.scan = 'fail';
 }
