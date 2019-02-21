@@ -19,8 +19,9 @@ function getCredentials(callback) {
 				if (doc.id === userUniqueId) { //* If the user is found
 					isValidUser = true;
 					authVue.authenticated = true;
-					callback();
 				}
+
+				callback();
 			});
 		})
 		.catch((error) => { dbFail() }) //* Error getting the document

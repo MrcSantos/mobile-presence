@@ -1,6 +1,8 @@
 function authenticated() {
+	authVue.authenticated = true
+
 	db.collection("users").doc(userUniqueId).get()
-		.then((user) => { authorizationPage.innerHTML = 'You are already authenticated as: ' + user.data().name + ' ' + user.data().surname })
+		.then((user) => { authVue.user = { id: userUniqueId, name: user.data().name, surname: user.data().surname } })
 		.catch((error) => {
 			authorizationPage.innerHTML = 'An unexpected error has occurred';
 			gui.db = 'fail';
@@ -8,5 +10,5 @@ function authenticated() {
 }
 
 function notAuthenticated() {
-	authorizationPage.innerHTML = 'You have to authenticate'
+	authVue.authenticated = false
 }

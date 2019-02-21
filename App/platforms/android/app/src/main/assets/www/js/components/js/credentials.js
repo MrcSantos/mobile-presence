@@ -18,8 +18,10 @@ function getCredentials(callback) {
 			querySnapshot.forEach((doc) => {
 				if (doc.id === userUniqueId) { //* If the user is found
 					isValidUser = true;
-					callback();
+					authVue.authenticated = true;
 				}
+
+				callback();
 			});
 		})
 		.catch((error) => { dbFail() }) //* Error getting the document

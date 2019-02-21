@@ -1,5 +1,5 @@
 const gui = new Vue({ //* For the debug page
-	el: '#gui',
+	el: '#debugVue',
 	data: {
 		bt: 'init',
 		scan: 'init',
@@ -11,8 +11,16 @@ const gui = new Vue({ //* For the debug page
 });
 
 const pre = new Vue({ //* For the presences page
-	el: '#presences',
+	el: '#presencesVue',
 	data: {
 		presences: []
+	}
+});
+
+const authVue = new Vue({ //* For the presences page
+	el: '#authVue',
+	data: {
+		user: {},
+		authenticated: false
 	}
 });
