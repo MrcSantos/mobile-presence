@@ -4,27 +4,27 @@ var isValidUser = false; //* Lazy solution for checking if the user is authentic
 /**
  * Gets the user credentials and sets the user authentication status
  */
-function getCredentials(callback) {
+function getCredentials(success, fail) {
 	window.plugins.uniqueDeviceID.get((id) => { //* Gets the device ID
 		userUniqueId = id;
 		gui.id = 'Your personal id: ' + id;
-	});
 
-	/**
-	 * Checks wether the user exists or not
-	 */
-	db.collection("users").get()
-		.then((querySnapshot) => {
-			querySnapshot.forEach((doc) => {
-				if (doc.id === userUniqueId) { //* If the user is found
+		/**
+		 * Checks wether the user exists or not
+		 */
+		db.collection("users").doc(id)
+			.get()
+			.then((user) => {
+				if (user.exists) {
 					isValidUser = true;
 					authVue.authenticated = true;
-				}
 
-				callback();
-			});
-		})
-		.catch((error) => { dbFail() }) //* Error getting the document
+					success();
+				} else { if (fail) { fail() } }
+			})
+			.catch((error) => { dbFail() }) //* Error getting the document
+	});
+
 }
 
 /**

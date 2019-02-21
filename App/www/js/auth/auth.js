@@ -10,5 +10,6 @@ function authenticated() {
 }
 
 function notAuthenticated() {
-	authVue.authenticated = false
+	authVue.authenticated = false;
+	isValidUser = false;
 }
