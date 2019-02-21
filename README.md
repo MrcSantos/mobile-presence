@@ -17,7 +17,7 @@ Detail of my project on my <a href='https://trello.com/invite/b/3XH7xA09/e392d7d
 
 ----------
 
-## Release 4.0 is HERE!
+## The first Android app deploy is HERE!
 The app can now:
 - Check for bluetooth connection
 - Scan for ble devices
@@ -26,10 +26,10 @@ The app can now:
 - Switch between gui types
 - Dynamic authentication system
 - See the last ten connection made
+- Manage user authentication
+- Bluetooth devices filtered by registering the uuids
 
 <br>
 
 Further improvements will be:
-- The app will enter in a god mode to manage authentication
-- The app will be in background
-- Bluetooth devices will be filtered by registering the uuids
+- The app will be in background (not as a service)

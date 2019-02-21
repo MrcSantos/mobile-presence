@@ -33,9 +33,12 @@ function startScan() {
  */
 function filterDevice(device) {
 	if (isDef(device.name)) {
-		scannedDevices.push(device);
-		dbgVue.devices.push(device);
 		bleVue.devices.push(device);
+
+		if (isPermitted(device.id)) {
+			scannedDevices.push(device);
+			dbgVue.devices.push(device);
+		}
 	}
 }
 
@@ -46,6 +49,20 @@ function filterDevice(device) {
  */
 function isDef(any) {
 	return any !== undefined && any !== null
+}
+
+function isPermitted(id) {
+	for (const key in permittedDevices) {
+		if (permittedDevices.hasOwnProperty(key)) {
+			const permittedId = permittedDevices[key];
+
+			if (permittedId == id) {
+				return true
+			}
+		}
+	}
+
+	return false
 }
 
 //--------------------------------------------------// Functions to update the status

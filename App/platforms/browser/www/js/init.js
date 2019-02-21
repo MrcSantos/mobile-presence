@@ -12,9 +12,24 @@ var app = {
 	onDeviceReady: function () {
 		getCredentials(() => {
 			authenticated();
-			startApp();
+			getPermittedDevices();
 		}, () => { notAuthenticated() })
 	}
 };
+
+function getPermittedDevices() {
+	db.collection("devices")
+		.where("factory", "==", USER.factory)
+		.get()
+		.then((data) => {
+			data.forEach(() => {
+				permittedDevices.push(data.data().id)
+			});
+
+			startApp();
+		})
+}
+
+var permittedDevices = [];
 
 app.initialize();
