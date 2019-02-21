@@ -40,7 +40,8 @@ function addBleDev() {
 					.set({ name: bleName, id: bleId, factory: data.docs[0].id })
 					.then(() => {
 						bleForm.reset();
-						alert("Ble correctly registered")
+						alert("Ble correctly registered");
+						getPermittedDevices();
 					})
 			} else { //* If the user DID NOT get the right permissions
 				alert("Wrong admin credentials");
