@@ -25,5 +25,5 @@ async function getPresences() {
 
 			pre.presences.push(data) //* Renders the presences by pushing them one by one
 		})
-	} catch (error) { gui.db = 'fail' } //* Error getting the document
+	} catch (error) { debug.db = 'fail' } //* Error getting the document
 }

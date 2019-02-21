@@ -7,7 +7,7 @@ var isValidUser = false; //* Lazy solution for checking if the user is authentic
 function getCredentials(success, fail) {
 	window.plugins.uniqueDeviceID.get((id) => { //* Gets the device ID
 		userUniqueId = id;
-		gui.id = 'Your personal id: ' + id;
+		debug.id = 'Your personal id: ' + id;
 
 		/**
 		 * Checks wether the user exists or not

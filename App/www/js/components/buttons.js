@@ -4,6 +4,9 @@ var presencesPage = document.getElementById("pre");
 var authorizationPage = document.getElementById("aut");
 /* The pages parts */
 
+/**
+* Goes to the standard panel
+*/
 function goToStandard() {
 	presencesPage.style.display = "none";
 	authorizationPage.style.display = "none";
@@ -12,7 +15,7 @@ function goToStandard() {
 }
 
 /**
-* Toggles the debug panel
+* Goes to the debug panel
 */
 function goToDebug() {
 	standardPage.style.display = "none";
@@ -22,7 +25,7 @@ function goToDebug() {
 }
 
 /**
- * Toggles the Presences panel
+ * Goes to the Presences panel
  */
 function goToPresences() {
 	debugPage.style.display = "none";
@@ -33,6 +36,9 @@ function goToPresences() {
 	checkCredentials(() => { getPresences() });
 }
 
+/**
+* Goes to the auth panel
+*/
 function goToAuth() {
 	debugPage.style.display = "none";
 	standardPage.style.display = "none";

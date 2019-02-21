@@ -63,7 +63,7 @@ function restart(dev) {
 	const restartSeconds = 30; // Restart wait seconds
 
 	//* Resets the variables
-	gui.devices = [];
+	debug.devices = [];
 	scannedDevices = [];
 
 	if (isDef(dev)) { lastDevice = copyObj(dev) } //* If a device is given it saves it as the last device
@@ -88,14 +88,14 @@ function copyObj(obj) {
  * Updates the db status, showing the running icon
  */
 function dbStart() {
-	gui.db = 'running';
+	debug.db = 'running';
 }
 
 /**
  * Updates the db status, showing the ok icon
  */
 function dbStop() {
-	gui.db = 'ok';
+	debug.db = 'ok';
 }
 
 /**
@@ -103,5 +103,5 @@ function dbStop() {
  */
 function dbFail(e) {
 	console.log(e);
-	gui.db = 'fail';
+	debug.db = 'fail';
 }

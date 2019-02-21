@@ -34,7 +34,7 @@ function startScan() {
 function filterDevice(device) {
 	if (isDef(device.name)) {
 		scannedDevices.push(device);
-		gui.devices.push(device);
+		debug.devices.push(device);
 	}
 }
 
@@ -53,19 +53,19 @@ function isDef(any) {
  * Updates the scan status, showing the running icon
  */
 function scanStarted() {
-	gui.scan = 'running';
+	debug.scan = 'running';
 }
 
 /**
  * Updates the scan status, showing the ok icon
  */
 function scanEnded() {
-	gui.scan = 'ok';
+	debug.scan = 'ok';
 }
 
 /**
  * Updates the scan status, showing the fail icon and resets the app in order to check the bt
  */
 function scanFailed() {
-	gui.scan = 'fail';
+	debug.scan = 'fail';
 }

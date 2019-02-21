@@ -1,4 +1,4 @@
-const gui = new Vue({ //* For the debug page
+const debug = new Vue({ //* For the debug page
 	el: '#debugVue',
 	data: {
 		bt: 'init',
