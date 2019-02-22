@@ -9,9 +9,11 @@ Vue.component('auth', {
 		}
 	},
 	template:
-		'<div class="w3-container">\
+		'<div>\
 			<h3 style="text-align: center">Welcome, you are authenticated as:<br>{{ user.name }} {{ user.surname }}</h3>\
-			<h6>Your id is: {{ user.id }}</h6>\
-			<button class="w3-button w3-right w3-red w3-round" onclick="logout()">Unregister this device</button>\
+			<div class="space-little"></div>\
+			<h6>Your factory id is:<br>{{ user.factory }}</h6>\
+			<h6>Your id is:<br>{{ user.id }}</h6>\
+			<button class="w3-button w3-margin w3-right w3-red w3-round" onclick="logout()">Unregister this device</button>\
 		</div>'
 });

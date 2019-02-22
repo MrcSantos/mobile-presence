@@ -11,10 +11,10 @@ var app = {
 	 */
 	onDeviceReady: function () {
 		getCredentials(() => {
-			authenticated();
+			authenticateUser();
 			getPermittedDevices();
 			startApp();
-		}, () => { notAuthenticated() })
+		}, () => { unauthenticateUser() })
 	}
 };
 

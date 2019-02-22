@@ -1,6 +1,6 @@
 var userUniqueId = ''; //* The device ID
 var isValidUser = false; //* Lazy solution for checking if the user is authenticated or not
-var USER = {}
+var USER = {};
 
 /**
  * Gets the user credentials and sets the user authentication status
@@ -8,7 +8,6 @@ var USER = {}
 function getCredentials(success, fail) {
 	window.plugins.uniqueDeviceID.get((id) => { //* Gets the device ID
 		userUniqueId = id;
-		dbgVue.id = 'Your personal id: ' + id;
 
 		/**
 		 * Checks wether the user exists or not
@@ -18,6 +17,9 @@ function getCredentials(success, fail) {
 			.then((user) => {
 				if (user.exists) {
 					USER = user.data();
+					USER.id = id;
+					authVue.user = USER;
+
 					success();
 				} else { fail() }
 			})

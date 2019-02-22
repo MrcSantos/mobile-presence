@@ -49,8 +49,6 @@ function goToAuth() {
 	presencesPage.style.display = "none";
 	blePage.style.display = "none";
 	authorizationPage.style.display = "block";
-
-	checkCredentials(() => { authenticated() }, () => { notAuthenticated() })
 }
 
 function goToBle() {

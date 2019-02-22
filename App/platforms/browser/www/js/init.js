@@ -11,9 +11,10 @@ var app = {
 	 */
 	onDeviceReady: function () {
 		getCredentials(() => {
-			authenticated();
+			authenticateUser();
 			getPermittedDevices();
-		}, () => { notAuthenticated() })
+			startApp();
+		}, () => { unauthenticateUser() })
 	}
 };
 
@@ -22,11 +23,9 @@ function getPermittedDevices() {
 		.where("factory", "==", USER.factory)
 		.get()
 		.then((data) => {
-			data.forEach(() => {
-				permittedDevices.push(data.data().id)
+			data.forEach((doc) => {
+				permittedDevices.push(doc.data().id)
 			});
-
-			startApp();
 		})
 }
 

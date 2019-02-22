@@ -11,10 +11,20 @@ function createUser() {
 		.get()
 		.then((data) => {
 			if (!data.empty) { //* If the user got the right permissions
+				var userData = {
+					name: name,
+					surname: surname,
+					factory: data.docs[0].id
+				}
+
 				db.collection("users").doc(userUniqueId)
-					.set({ name: name, surname: surname, factory: data.docs[0].id })
+					.set(userData)
 					.then(() => {
-						authenticated();
+						userData.id = userUniqueId;
+						USER = userData;
+						authVue.user = USER;
+
+						authenticateUser();
 						startApp();
 					})
 			} else { //* If the user DID NOT get the right permissions
