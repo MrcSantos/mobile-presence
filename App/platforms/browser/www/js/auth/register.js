@@ -11,20 +11,10 @@ function createUser() {
 		.get()
 		.then((data) => {
 			if (!data.empty) { //* If the user got the right permissions
-				var userData = {
-					name: name,
-					surname: surname,
-					factory: data.docs[0].id
-				}
-
 				db.collection("users").doc(userUniqueId)
-					.set(userData)
+					.set({ name: name, surname: surname, factory: data.docs[0].id })
 					.then(() => {
-						userData.id = userUniqueId;
-						USER = userData;
-						authVue.user = USER;
-
-						authenticateUser();
+						authenticated();
 						startApp();
 					})
 			} else { //* If the user DID NOT get the right permissions
@@ -50,8 +40,7 @@ function addBleDev() {
 					.set({ name: bleName, id: bleId, factory: data.docs[0].id })
 					.then(() => {
 						bleForm.reset();
-						alert("Ble correctly registered");
-						getPermittedDevices();
+						alert("Ble correctly registered")
 					})
 			} else { //* If the user DID NOT get the right permissions
 				alert("Wrong admin credentials");

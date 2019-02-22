@@ -1,4 +1,4 @@
-function authenticateUser() {
+function authenticated() {
 	authVue.authenticated = true;
 	dbgVue.authenticated = true;
 	stdVue.authenticated = true;
@@ -6,9 +6,10 @@ function authenticateUser() {
 	bleVue.authenticated = true;
 
 	isValidUser = true;
+	authVue.user = USER;
 }
 
-function unauthenticateUser() {
+function notAuthenticated() {
 	authVue.authenticated = false;
 	dbgVue.authenticated = false;
 	stdVue.authenticated = false;
@@ -16,6 +17,5 @@ function unauthenticateUser() {
 	bleVue.authenticated = false;
 
 	isValidUser = false;
-
 	authVue.user = {};
 }

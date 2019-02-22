@@ -20,11 +20,10 @@ function createUser() {
 				db.collection("users").doc(userUniqueId)
 					.set(userData)
 					.then(() => {
-						userData.id = userUniqueId;
 						USER = userData;
-						authVue.user = USER;
-
-						authenticateUser();
+						USER.id = userUniqueId;
+						authenticated();
+						getPermittedDevices();
 						startApp();
 					})
 			} else { //* If the user DID NOT get the right permissions

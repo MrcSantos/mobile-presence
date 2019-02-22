@@ -1,6 +1,6 @@
 function logout() {
 	db.collection("users").doc(userUniqueId).delete().then(function () {
-		unauthenticateUser();
+		notAuthenticated();
 	}).catch(function (error) {
 		console.error("Error removing document: ", error);
 	});

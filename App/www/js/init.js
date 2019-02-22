@@ -11,10 +11,9 @@ var app = {
 	 */
 	onDeviceReady: function () {
 		getCredentials(() => {
-			authenticateUser();
 			getPermittedDevices();
 			startApp();
-		}, () => { unauthenticateUser() })
+		}, () => { notAuthenticated() })
 	}
 };
 
